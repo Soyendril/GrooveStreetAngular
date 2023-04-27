@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+
+
 import { AppComponent } from './app.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
-import { DiscussionPageComponent } from './Pages/discussion-page/discussion-page.component';
+import { DiscussionPageComponent } from './Pages/messages-page/discussion-page/discussion-page.component';
 import { MessagesPageComponent } from './Pages/messages-page/messages-page.component';
 import { ChoixPersonnePageComponent } from './Pages/choix-personne-page/choix-personne-page.component';
 import { HomepageComponent } from './Pages/homepage/homepage.component';
@@ -28,7 +30,9 @@ import { BioPageComponent } from './Pages/bio-page/bio-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
