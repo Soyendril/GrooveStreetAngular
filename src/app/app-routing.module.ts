@@ -11,8 +11,7 @@ import { AjoutPhotoPageComponent } from './Pages/ajout-photo-page/ajout-photo-pa
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
-import { FormulaireConnexionComponent } from './pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
-
+import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
 
 const routes: Routes = [
   //HOMEPAGE
