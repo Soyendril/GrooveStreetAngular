@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'Bio/EditPhoto', component: AjoutPhotoPageComponent },
   { path: 'Settings', component: SettingsPageComponent },
   //PROFIL AUTRE
-  { path: 'Profil/:id', component: ProfilPersonnePageComponent },
+  { path: 'Profile/:id', component: ProfilPersonnePageComponent },
 ];
 
 @NgModule({

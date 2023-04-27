@@ -1,0 +1,38 @@
+<!-- *************formulaire d'inscription en plusieurs étapes************* -->
+<form id="multistepform">
+
+    <!-- barre de progression --> 
+    <ul id="progressbar">
+      <li class="active">Réglages du comptes</li>
+      <li>Informations personnelles</li>
+    </ul>
+
+    <!-- champs d'informations -->
+    <fieldset id="etape1" class="fieldset">
+      <h2 class="fs-title">Créez votre compte</h2>
+
+      <!-- Première partie du Formulaire d'inscription -->
+      <h3 class="fs-subtitle">Etape 1</h3>
+      <input type="text" name="email" placeholder="Email" required/>
+      <input type="password" name="pass" placeholder="Mot de passe" required/>
+      <input type="password" name="cpass" placeholder="Confirmez votre mot de passe" required/>
+      <input type="button" name="suivant" class="suivant action-button" value="Suivant" />
+    </fieldset>
+
+     <!-- Deuxième partie du Formulaire d'inscription -->
+    <fieldset id="etape2" class="fieldset">
+      <h2 class="fs-title">Informations Personnelles</h2>
+      <h3 class="fs-subtitle">Etape 2</h3>
+      <input type="text" name="firstname" placeholder="Prénom" required/>
+      <input type="text" name="lastname" placeholder="Nom" required/>
+      <input type="text" name="username" placeholder="Pseudonyme" required/>
+      <input type="tel" id="phone" name="phone" placeholder="Numéro de Telephone" pattern="[0-9]{10}" required />
+      <input type="button" name="previous" class="previous action-button" value="Precedent" />
+      <a href="" class="submit action-button" target="_top">S'inscrire</a>
+    </fieldset>
+    
+   
+  </form>
+   <!-- UTILISATION DU SCRIPT JS -->
+  <script src ="JS/Formulaire.js"></script>
+  

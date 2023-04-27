@@ -1,0 +1,29 @@
+button {
+    background-color: #ffffff; /* Définit la couleur de fond */
+    background-size: cover; /* Redimensionne l'image de fond pour remplir le bouton */
+    color: white; /* Définit la couleur du texte à l'intérieur du bouton */
+    border: none; /* Supprime la bordure par défaut du bouton */
+    padding: 12px 24px; /* Définit l'espacement entre le texte et les bords du bouton */
+    text-align: center; /* Centre le texte à l'intérieur du bouton */
+    display: inline-block; /* Définit le bouton comme un élément en ligne */
+    cursor: pointer; /* Définit le curseur de la souris en forme de main lorsqu'il survole le bouton */
+    height: 70px;
+    width: 70px;
+    
+  }
+  
+
+.roue{
+    background-image: url("src\assets\img\settings.png"); /* Définit une image de fond */
+   
+}
+
+.pb-camera{
+    background-image: url("src\assets\img\logocamera.png"); /* Définit une image de fond */
+   
+
+}
+.edit{
+    background-image: url("src\assets\img\edit.png"); /* Définit une image de fond */
+    
+}

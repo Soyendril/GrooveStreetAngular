@@ -14,6 +14,7 @@ import { AjoutPhotoPageComponent } from './Pages/ajout-photo-page/ajout-photo-pa
 import { NavbarComponent } from './Commons/navbar/navbar.component';
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { BioPageComponent } from './Pages/bio-page/bio-page.component';
+import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BioPageComponent } from './Pages/bio-page/bio-page.component';
     AjoutPhotoPageComponent,
     NavbarComponent,
     ProfilPersonnePageComponent,
-    BioPageComponent
+    BioPageComponent,
+    FormulairePageComponent
   ],
   imports: [
     BrowserModule,
