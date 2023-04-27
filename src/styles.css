@@ -11,6 +11,7 @@
     list-style: none;
 }
 body{
+    background-color: #333333;
     width: 100vw;
 }
 /*Styles spécifiques pour les grands écrans type écrans d'ordinateur*/
