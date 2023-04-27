@@ -10,6 +10,8 @@ import { BioPageComponent } from './Pages/bio-page/bio-page.component';
 import { AjoutPhotoPageComponent } from './Pages/ajout-photo-page/ajout-photo-page.component';
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
+import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
+import { FormulaireConnexionComponent } from './pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,9 @@ const routes: Routes = [
   { path: 'Settings', component: SettingsPageComponent },
   //PROFIL AUTRE
   { path: 'Profile/:id', component: ProfilPersonnePageComponent },
+  //FORMULAIRE
+  { path: 'Connect', component:FormulaireConnexionComponent},
+  { path: 'Inscription', component:FormulairePageComponent},
 ];
 
 @NgModule({

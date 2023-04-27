@@ -15,6 +15,7 @@ import { NavbarComponent } from './Commons/navbar/navbar.component';
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { BioPageComponent } from './Pages/bio-page/bio-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
+import { FormulaireConnexionComponent } from './pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page
     NavbarComponent,
     ProfilPersonnePageComponent,
     BioPageComponent,
-    FormulairePageComponent
+    FormulairePageComponent,
+    FormulaireConnexionComponent
   ],
   imports: [
     BrowserModule,
