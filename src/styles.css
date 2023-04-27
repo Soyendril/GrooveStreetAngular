@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/* Style commun au site */
+:root{
+    --color-black: #333333;
+    --color-white: #F5F5F5;
+    --color-green: #0FA47A;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+body{
+    width: 100vw;
+}
+/*Styles spécifiques pour les grands écrans type écrans d'ordinateur*/
+@media screen and (min-width: 980px){
+    body{
+        /* background-image: url("/images/still-g0d20f0db7_640.jpg"); */
+        background-size: cover;
+    }
+}
