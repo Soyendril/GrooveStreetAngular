@@ -1,0 +1,37 @@
+[
+    {
+    "id": 1,
+    "name": "Lucie Martin",
+    "city": "Lille",
+    "username": "luciem",
+    "email": "lucie.martin@test.com"
+    },
+    {
+    "id": 2,
+    "name": "Thomas Dupont",
+    "city": "Roubaix",
+    "username": "thomasd",
+    "email": "thomas.dupont@test.com"
+    },
+    {
+    "id": 3,
+    "name": "Marie Durand",
+    "city": "Tourcoing",
+    "username": "maried",
+    "email": "marie.durand@test.com"
+    },
+    {
+    "id": 4,
+    "name": "Antoine Leroy",
+    "city": "Valenciennes",
+    "username": "antoinel",
+    "email": "antoine.leroy@test.com"
+    },
+    {
+    "id": 5,
+    "name": "Sophie Lefevre",
+    "city": "Lille",
+    "username": "sophiel",
+    "email": "sophie.lefevre@test.com"
+    }
+    ]

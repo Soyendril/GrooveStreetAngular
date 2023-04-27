@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class BioPageComponent {
 
+  settingspath = 'src\assets\img\settings.png'
+  appareilphotopath = 'src\assets\img\logocamera.png'
+  crayonpath = 'src\assets\img\edit.png'
+
 }
