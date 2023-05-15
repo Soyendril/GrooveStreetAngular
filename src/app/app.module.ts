@@ -16,7 +16,7 @@ import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil
 import { BioPageComponent } from './Pages/bio-page/bio-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
 import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +36,7 @@ import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   
   ],
   providers: [],
