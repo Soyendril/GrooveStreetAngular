@@ -10,34 +10,13 @@
     height: 70px;
 }
 #nav-haut{
-    width: 100%;
-    /* margin: 0 auto; */
-    /* display: flex; 
+    display: flex;
     align-items: center;
     align-content: center;
-    justify-content: space-evenly; */
+    justify-content: space-evenly;
     background-color: transparent;
 }
-#nav-haut ul{
-    height: 100%;
-    /* width: 65px;
-    height: 65px; */
-    /* margin: 14px 0;
-    border-radius: 50%; */
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-}
-/* #nav-haut li{
-    margin: 0 40px;
-} */
 
-svg{
-    fill: var(--color-white);
-    width: 40px;
-    height: 40px;
-}
 
 .nav-img{
     width: 65px;
