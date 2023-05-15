@@ -1,0 +1,59 @@
+.container{
+    display: flex;
+    text-align: start;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.wrapper{
+    margin-top: 15px;
+    height:60vh;
+    width: 50vw;
+    background-color: aliceblue;
+    position: relative;
+}
+form{
+    bottom: 0;
+    position: absolute;
+    width : 100%;
+}
+form input{
+    display: inline-block;
+    width:90%;
+    margin:10px;
+    padding:10px;
+}
+form button{
+    height: 5vh;
+    width: auto;
+    border-radius: 15%;
+    background-color: #0fA47A;
+    font-weight: bold;
+    color: white;
+}
+h1{
+    align-items: center;
+    text-align: center;
+    color: aliceblue;
+    margin:15px;
+}
+.user{
+    text-align:start;
+}
+.other-user{
+    text-align:end;
+    
+}
+
+.user-message-container{
+    background: #0fA47A;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.other-user-message-container{
+    background: #90d0be;
+    padding: 10px;
+    border-radius: 10px;
+}
