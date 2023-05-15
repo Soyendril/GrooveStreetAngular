@@ -2,40 +2,19 @@
 <div class="container">
 
   <div class="wrapper">
-    <div class="messages">
+    <div *ngFor="let message of chatService.messages" class="messages">
       <ul>
         <li class="user">
           <div class="user-message-container">
-            <span>Moi :</span><br>
-            <span class="message_user">Salut, ça va ?</span>
+            {{ message }}
           </div>
         </li>
-        <li class="other-user">
-          <div class="other-user-message-container">
-            <span class="other_user">: Utilisateur 2 </span><br>
-          <span class="message_other_user">Oui, et toi ?</span>
-          
-        </div>
-      </li>
-        <li>
-          <span class="user">Moi :</span>
-          <span class="message">super merci ! quoi de neuf mon reuf?</span>
-        </li>
-        <li>
-          <span class="other_user">Utilisateur 2 :</span>
-          <span class="message">Rien la routine !</span>
-        </li>
-        <li>
-          <span class="user">Moi :</span>
-          <span class="message">Ok</span>
-        </li>
-
       </ul>
     </div>
     <div class="input">
       <form>
-        <input type="text" placeholder="Entrez votre message ici...">
-        <button class='Envoyer'>Envoyer</button>
+        <input (keydown.enter)="sendMessage()" class ="form-control" type="text" [(ngModel)]="newMessage" placeholder="Entrez votre message ici..." >
+        <button  (click)="sendMessage()" class='Envoyer'>Envoyer</button>
       </form>
     </div>
   </div>

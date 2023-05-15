@@ -45,11 +45,15 @@ h1{
     text-align:end;
     
 }
-
+.username{
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .user-message-container{
     background: #0fA47A;
     padding: 10px;
     border-radius: 10px;
+    margin-right: 60%;
 }
 
 .other-user-message-container{
