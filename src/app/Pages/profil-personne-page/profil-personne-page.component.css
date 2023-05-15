@@ -1,4 +1,45 @@
-#contail-profil-personne{
+#contail-profil-personne {
     width: 100%;
-    height: calc(100vh - 240px);
+    /*height: calc(100vh - 240px);*/
+    height: 100vh;
+    color: var(--color-white);
+    margin: 0;
+    padding: 200px 40px 40px 40px;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+h1{
+    text-align: center;
+    margin: 50px 0 20px 0;
+}
+svg{
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    margin-left: 10px;
+}
+
+#contail-profil-personne p img {
+    width: 27px;
+    height: 27px;
+    padding-right: 10px;
+}
+
+.p-vert{
+    background-color: #0FA47A;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.shadow{
+    text-shadow: 2px 2px 0 var(--color-black), 2px -2px 0 var(--color-black), -2px 2px 0 var(--color-black), -2px -2px 0 var(--color-black), 2px 0px 0 var(--color-black), 0px 2px 0 var(--color-black), -2px 0px 0 var(--color-black), 0px -2px 0 var(--color-black);
+}
+
+#contain-bouton-bas{
+    margin-top: calc(100vh - 220px);
 }
