@@ -9,12 +9,20 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   isOnSwipe: boolean;
+  selectedButton: number=1;
 
   constructor(private router: Router) {
     this.isOnSwipe = this.router.url === 'Grooves/:id';
+    // Vérifier le routerLink actif
+    for (const button of this.buttons) {
+      if (button.routerLink === this.router.url) {
+        this.selectedButton = button.id;
+        break;
+      }
+    }
   }
 
-  selectedButton: number = -1; // Initialiser à -1 pour aucun bouton sélectionné
+  // Initialiser à 2 pour la page de liste de profils
 
   buttons = [
     { id: 1, image1: 'assets/img/ppwht.png', image2: 'assets/img/ppgrn.png', routerLink:'/home'},
@@ -22,11 +30,9 @@ export class NavbarComponent {
     { id: 3, image1: 'assets/img/chatwht.png', image2: 'assets/img/chatgreen.png', routerLink: '/Grooves' }
   ];
 
+
+
   toggleButton(buttonId: number): void {
-    if (this.selectedButton === buttonId) {
-      this.selectedButton = -1; // Si le bouton est déjà sélectionné, le désélectionner
-    } else {
-      this.selectedButton = buttonId; // Sinon, sélectionner le bouton
-    }
+    this.selectedButton = buttonId;
   }
 }
