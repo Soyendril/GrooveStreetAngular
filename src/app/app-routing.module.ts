@@ -12,6 +12,7 @@ import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
 import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
+import { RegisterComponent } from './authentification/register/register.component';
 
 const routes: Routes = [
   //HOMEPAGE
@@ -31,6 +32,8 @@ const routes: Routes = [
   //FORMULAIRE
   { path: 'Connect', component:FormulaireConnexionComponent},
   { path: 'Inscription', component:FormulairePageComponent},
+  // authentification
+  { path: 'register', component:RegisterComponent},
 ];
 
 @NgModule({
