@@ -127,6 +127,6 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
  */
   putCookie(key: string, value: string): void {
     this.cookieService.put(key, value);
-    console.log("Le cookie : " + key + " : " + value);
+    console.log("Le cookie mauvais : " + key + " : " + value);
   }
 }
