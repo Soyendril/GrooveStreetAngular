@@ -21,9 +21,9 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
     return this.http.get<Musicien[]>(this.apiUrl);
   }
 
-  addUser(user: Musicien): Observable<Musicien> {
+  addUser(musicien: Musicien): Observable<Musicien> {
     console.log("Envoi creation musicien au back");
-    return this.http.post<Musicien>(this.apiUrl, user);
+    return this.http.post<Musicien>(this.apiUrl, musicien);
   }
 
   updateUser(musicien: Musicien): Observable<Musicien> {
@@ -31,8 +31,8 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
     return this.http.put<Musicien>(url, musicien);
   }
 
-  deleteUser(userId: number | null): Observable<unknown> {
-    const url = `${this.apiUrl}/${userId}`;
+  deleteUser(musicenId: number | null): Observable<unknown> {
+    const url = `${this.apiUrl}/${musicenId}`;
     return this.http.delete(url);
   }
 
@@ -40,19 +40,14 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
    * recupere un utilisateur
    * @returns 
    */
-  getUser(userName: string, password: string): Observable<Musicien> {
-    const url = `${this.apiUrl}/${userName}/${password}`;
-    console.log('Service user : ' + this.http.get<Musicien[]>(url));
+  getUser(nom: string, password: string): Observable<Musicien> {
+    const url = `${this.apiUrl}/${nom}/${password}`;
+    console.log('Service musicien : ' + this.http.get<Musicien[]>(url));
     return this.http.get<Musicien>(url);
   }
 
-  // getLeUser(userName: string, password: string): Observable<User> {
-  //   const url = `${this.apiUrl}/${userName}/${password}`;
-  //   return this.http.get<User>(url);
-  // }
-
-  getUserAuth(userName: string, password: string): Observable<any> {
-    const url = `${this.apiUrl}/${userName}/${password}`;
+  getUserAuth(nom: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/${nom}/${password}`;
     return this.http.get<any>(url);
   }
 
@@ -90,17 +85,17 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
    * si le back ne renvoi pas "not" on stocke le cookie et renvoi true
    * sinon renvoi false
    */
-  authenticate(userName: string, password: string) {
+  authenticate(nom: string, password: string) {
     // creation du nom de cookie par rapport au port du localhost de l'application utilisée
     const port = window.location.port;
     const cookieId = `id_${port}`;
-    const cookieUserName = `userName_${port}`;
+    const cookieNom = `nom_${port}`;
 
-    return this.getUserAuth(userName, password).subscribe(
+    return this.getUserAuth(nom, password).subscribe(
       (response: any) => {
         if (response.userName != "not" && response.id != "not") {
           this.putCookie(cookieId, ("" + response.id));
-          this.putCookie(cookieUserName, response.userName);
+          this.putCookie(cookieNom, response.nom);
           console.log("test true");
           return true;
         } else {
