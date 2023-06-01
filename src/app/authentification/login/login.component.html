@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div id="contain-login">
+
+<h1 class="text-3xl text-black mb-6 text-center mb-8">Se connecter</h1>
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="email" class="label">Adresse email</label>
+        <input id="email" type="email" name="email" formControlName="email" placeholder="Votre adresse email">
+    </div>
+
+    <div class="mb-4">
+        <label for="password" class="label">Mot de passe</label>
+        <input id="password" type="password" name="password" formControlName="password"
+            placeholder="Votre mot de passe">
+    </div>
+
+    <button type="submit" class="btn w-full">Se connecter</button>
+</form>
+
+<div class="h-32">
+    <div><a routerLink="/register">S'inscrire</a></div>
+</div>
+</div>
