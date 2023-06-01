@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
-
+import { CookieModule } from 'ngx-cookie';
+import { RxStomp } from '@stomp/rx-stomp';
 
 import { AppComponent } from './app.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
@@ -19,6 +20,8 @@ import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire
 import { FormsModule } from '@angular/forms';
 import { BoutonsStyleComponent } from './components/boutons-style/boutons-style.component';
 import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-bas.component';
+import { LoginComponent } from './authentification/login/login.component';
+import { RegisterComponent } from './authentification/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-ba
     NavBoutonsBasComponent,
     NavBoutonsBasComponent,
     BoutonsStyleComponent,
-    
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,19 @@ import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-ba
     FormsModule,
   
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RxStomp,
+      useFactory: () => {
+        const rxStomp = new RxStomp();
+        rxStomp.configure({
+          brokerURL: 'ws://localhost:8080/stomp'
+        });
+        rxStomp.activate();
+        return rxStomp;
+      },
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

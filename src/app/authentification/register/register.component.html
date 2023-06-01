@@ -1,0 +1,33 @@
+<h1 class="text-3xl text-black mb-6 text-center mt-8">Completez vos informations</h1>
+<form [formGroup]="formUser" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="userName" class="label">Nom d'utilisateur</label>
+        <input id="userName" type="text" name="userName" class="input" formControlName="userName" placeholder="Nom d'utilisateur">
+              <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
+    </div>    
+
+    <div class="mb-4">
+        <label for="email" class="label">Email</label>
+        <input id="email" type="email" name="email" class="input" placeholder="Votre email" formControlName="email">
+            <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
+    </div>
+    <div class="mb-4">
+        <label for="password" class="label">Mot de passe</label>
+        <input id="password" type="password" name="password" class="input" placeholder="Votre mot de passe" formControlName="password">
+            <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
+    </div>
+
+    <div class="mb-4">
+        <label for="confirmPassword" class="label">Confirmation du mot de passe</label>
+        <input id="confirmPassword" type="password" name="confirmPassword" formControlName="confirmPassword" class="shadow border rounded w-full p-2" placeholder="Retapez votre mot de passe">
+    </div>
+
+    <div *ngIf="formUser.get('confirmPassword')?.hasError('verifPassword')">
+        Les champs de mot de passe ne correspondent pas.
+      </div>
+
+    <button type="submit" class="btn w-full">Créer mon compte</button>
+</form>
+<div class="h-32">
+<div><a routerLink="/connexion">Se connecter</a></div>
+</div>
