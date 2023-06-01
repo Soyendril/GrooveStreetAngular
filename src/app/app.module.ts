@@ -17,7 +17,6 @@ import { NavbarComponent } from './Commons/navbar/navbar.component';
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { BioPageComponent } from './Pages/bio-page/bio-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
-import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
 import { BoutonsStyleComponent } from './components/boutons-style/boutons-style.component';
 import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-bas.component';
 import { LoginComponent } from './authentification/login/login.component';
@@ -36,7 +35,6 @@ import { RegisterComponent } from './authentification/register/register.componen
     ProfilPersonnePageComponent,
     BioPageComponent,
     FormulairePageComponent,
-    FormulaireConnexionComponent,
     NavBoutonsBasComponent,
     NavBoutonsBasComponent,
     BoutonsStyleComponent,
