@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, map, BehaviorSubject, count } from 'rxjs';
+import Musicien from '../model/musicien.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,7 @@ export class MusicienService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMusiciens() {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getOneMusicien(): Observable<Musicien>{
+    return this.http.get<Musicien>(`${this.baseUrl}/2`);
   }
 }
