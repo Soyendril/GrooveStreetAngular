@@ -9,14 +9,15 @@ import Musicien from '../model/musicien.model';
 })
 export class MusicienService {
 
-  private baseUrl = 'http://localhost:8080/musiciens'; // Remplacez l'URL par celle de votre backend
+  private baseUrl = 'http://localhost:8080/musiciens';
 
   constructor(private http: HttpClient) { }
 
-  // getOneMusicien(): Observable<Musicien>{
-  //   return this.http.get<Musicien>(`${this.baseUrl}/52`);
-  // }
-
+  /*
+    On reprend Musicien en observable
+    On génère un index au hasard qu'on passe sur la liste des IDs
+    On obitent un ID qu'onon passe à la fonction getMusicienById
+  */
   getRandomMusicien(): Observable<Musicien> {
     return this.getMusicienIds().pipe(
       switchMap(id => {
@@ -27,10 +28,12 @@ export class MusicienService {
     );
   }
 
+  // On passe la liste des IDs des musiciens en observable
   getMusicienIds(): Observable<number[]> {
     return this.http.get<number[]>(`${this.baseUrl}/ids`);
   }
 
+  // On rend Musicien observable pour le récupérer une fois l'ID définie
   getMusicienById(id: number): Observable<Musicien> {
     return this.http.get<Musicien>(`${this.baseUrl}/${id}`);
   }
