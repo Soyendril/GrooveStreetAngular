@@ -25,7 +25,7 @@ export class ProfilPersonnePageComponent implements OnInit {
   constructor(private musicienService: MusicienService) { }
 
   ngOnInit() {
-    this.musicienService.getOneMusicien().subscribe(
+    this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
       },
