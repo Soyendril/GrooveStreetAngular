@@ -1,63 +1,21 @@
-.container{
-    display: flex;
-    text-align: start;
-    align-items: center;
-    justify-content: center;
-
+#content-messages{
+    border: 1px solid;
+    width: 100%;
+    height: 100%;
+    background-color: aquamarine;
+    padding: 50px;
 }
-
-.wrapper{
-    margin-top: 15px;
-    height:60vh;
-    width: 50vw;
-    background-color: aliceblue;
-    position: relative;
-}
-form{
-    bottom: 0;
-    position: absolute;
-    width : 100%;
-}
-form input{
-    display: inline-block;
-    width:90%;
-    margin:10px;
-    padding:10px;
-}
-form button{
-    height: 5vh;
-    width: auto;
-    border-radius: 15%;
-    background-color: #0fA47A;
-    font-weight: bold;
-    color: white;
-}
-h1{
-    align-items: center;
-    text-align: center;
+button{
+    background-color: lightseagreen;
+    margin: 20px;
+    width: 50px;
+    height: 50px;
     color: aliceblue;
-    margin:15px;
-}
-.user{
-    text-align:start;
-}
-.other-user{
-    text-align:end;
-    
-}
-.username{
-    font-weight: bold;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.user-message-container{
-    background: #0fA47A;
-    padding: 10px;
-    border-radius: 10px;
-    margin-right: 60%;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
-.other-user-message-container{
-    background: #90d0be;
-    padding: 10px;
-    border-radius: 10px;
+input{
+    height: 50px;
+    width: 200px;
 }

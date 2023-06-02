@@ -1,7 +1,8 @@
-.container{
-    margin: 25px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+#contain-messagaes{
+    margin: 20px;
+    padding: 20px;
+}
+
+a{
+    color: #fff;
 }

@@ -21,6 +21,7 @@ import { BoutonsStyleComponent } from './components/boutons-style/boutons-style.
 import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-bas.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { RegisterComponent } from './authentification/register/register.componen
         rxStomp.activate();
         return rxStomp;
       },
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

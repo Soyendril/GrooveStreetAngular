@@ -1,21 +1,14 @@
 <h1>Discussion</h1>
 <div class="container">
-
-  <div class="wrapper">
-    <div *ngFor="let message of chatService.messages" class="messages">
-      <ul>
-        <li class="user">
-          <div class="user-message-container">
-            {{ message }}
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="input">
-      <form>
-        <input (keydown.enter)="sendMessage()" class ="form-control" type="text" [(ngModel)]="newMessage" placeholder="Entrez votre message ici..." >
-        <button  (click)="sendMessage()" class='Envoyer'>Envoyer</button>
-      </form>
-    </div>
+  <div id="content-messages">
+    <ul>
+      <!-- <li *ngFor="let m of messages">{{m | json}}</li> -->
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+    <form [formGroup]="form" (ngSubmit)="sendMessage()">
+      <input type="text" formControlName="message">
+      <button type="submit">></button>
+    </form>
   </div>
+  
 </div>

@@ -33,7 +33,9 @@ const routes: Routes = [
   { path: 'Inscription', component:FormulairePageComponent},
   // authentification
   { path: 'login', component:LoginComponent},
-  { path: 'register', component:RegisterComponent}
+  { path: 'register', component:RegisterComponent},
+  // detail de la conversation entre musiciens
+  { path: 'messages/:musicien2_id', component: DiscussionPageComponent },
 ];
 
 @NgModule({
