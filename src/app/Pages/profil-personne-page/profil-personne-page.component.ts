@@ -24,6 +24,10 @@ export class ProfilPersonnePageComponent implements OnInit {
 
   constructor(private musicienService: MusicienService) { }
 
+  /*
+    On souscrit à l'observable de musicien.service.ts
+    Pour faire passer la data du back dans les attributs 'musicien'
+  */
   ngOnInit() {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
@@ -34,14 +38,4 @@ export class ProfilPersonnePageComponent implements OnInit {
       }
     );
   }
-
-  // user: any = {
-  //   "id": 4,
-  //   "name": "Kendrick Lamar",
-  //   "distance": "3 km",
-  //   "slogan": "Rap, trap, be humble",
-  //   "intro": "Table de mixage, chant et scratch",
-  //   "message": "J'ai un flow de ouf malade, je pose des impors sur des intrus ghetto, certaines que je produis moi-même. Jkendfe cherche des beat-makers chevronnés pour faire des collabs. Musicalement,\nKendrick",
-  //   "photoUrl": "./assets/img/kendrick.png"
-  //   }
 }
