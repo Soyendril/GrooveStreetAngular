@@ -1,17 +1,14 @@
 <h1>Discussion</h1>
 <div class="container">
   <div id="content-messages">
-    <form [formGroup]="form" (ngSubmit)="sendMessage()">
-      <input type="text" formControlName="message">
-      <button type="submit">submit</button>
-      <!-- <span>{{lastUserMessage | json}}</span> -->
-    </form>
     <ul>
       <!-- <li *ngFor="let m of messages">{{m | json}}</li> -->
       <li *ngFor="let message of messages">{{ message }}</li>
     </ul>
-    <button (click)="connect()">connect</button>
-    <button (click)="disconnect()">disconnect</button>
+    <form [formGroup]="form" (ngSubmit)="sendMessage()">
+      <input type="text" formControlName="message">
+      <button type="submit">></button>
+    </form>
   </div>
   
 </div>

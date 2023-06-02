@@ -43,13 +43,13 @@ export class MessagesPageComponent implements OnInit{
 
         // Parcourir les messages et ajouter les utilisateurs à l'ensemble
         this.messages.forEach((message) => {
-          if (this.musicienId == message.userEntity1.id) {
-            if (!this.isUser2(message.userEntity2.id)) { // utilise la fonction pour vérifier si l'utilisateur2 est deja inscrit
-              this.musiciens.add(message.userEntity2);
+          if (this.musicienId == message.musicien1.id) {
+            if (!this.isUser2(message.musicien2.id)) { // utilise la fonction pour vérifier si l'utilisateur2 est deja inscrit
+              this.musiciens.add(message.musicien2);
             }
-          } else if (this.musicienId == message.userEntity2.id) {
-            if (!this.isUser2(message.userEntity1.id)) {
-              this.musiciens.add(message.userEntity1);
+          } else if (this.musicienId == message.musicien2.id) {
+            if (!this.isUser2(message.musicien1.id)) {
+              this.musiciens.add(message.musicien1);
             }
           }
         });

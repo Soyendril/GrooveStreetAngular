@@ -6,6 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MusicienService } from 'src/app/authentification/services/musicien.service';
 import { ChatService } from '../service/chat.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -14,11 +15,14 @@ import { ChatService } from '../service/chat.service';
   styleUrls: ['./discussion-page.component.css']
 })
 export class DiscussionPageComponent implements OnDestroy, OnInit{
+  currentDate = new Date();
+  formattedDateTime = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+
   form = new FormGroup({
-    'user1_id': new FormControl(""),
-    'user2_id': new FormControl(""),
+    'musicien1_id': new FormControl(""),
+    'musicien2_id': new FormControl(""),
     'message': new FormControl(),
-    'date': new FormControl('')
+    'date': new FormControl(this.formattedDateTime)
   })
   laDate: Date = new Date();
   dateAFormater!: string;
@@ -31,7 +35,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
   cookieId: string;
 
   @Input()
-  user2_id: string = '';
+  musicien2_id: string = '';
   private disconnect$ = new Subject();
 
   constructor(
@@ -39,7 +43,8 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
     private route: ActivatedRoute,
     public conversationService: ConversationService,
     private musicienService: MusicienService,
-    private chatservice: ChatService) {
+    private chatservice: ChatService,
+    private datePipe: DatePipe) {
     this.connect();
     const port = window.location.port;  // recupere le port du localhost
     this.cookieId = `id_${port}`;       // nomme la variable cookieId en id_42xx
@@ -49,7 +54,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
 
     // On récupère la partie 'type' de l'URL
     // renvoi 0 si pas de valeur
-    const user2_id = this.route.snapshot.paramMap.get('user2_id') || '0';
+    const musicien2_id = this.route.snapshot.paramMap.get('musicien2_id') || '0';
 
     /**
      * se connecte au service,
@@ -63,10 +68,10 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
     });
 
     // met a jour le formulaire avec les bonnes id
-    this.ajoutFormId();
+    this.ajoutFormId(musicien2_id);
 
     // Recupere les messages de la Bdd relatifs à la conversation : user1 et user2
-    this.getMessageConversation(user2_id);
+    this.getMessageConversation(musicien2_id);
     console.log(this.form.value);
   }
 
@@ -97,7 +102,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
    * Envoi la notification de maj du front
    */
   sendMessage() {
-    this.majDate();
+    // this.majDate();
     // this.notifierService.send(this.form.value);
     this.chatservice.sendMessage(this.form.value);
     this.form.patchValue({
@@ -128,8 +133,8 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
       .subscribe(conversations => this.messages = conversations);
   }
 
-  private getMessageConversation(user2_id: string): void {
-    this.conversationService.getConversationsByIdUnique(this.musicienService.getCookie(this.cookieId), user2_id)
+  private getMessageConversation(musicien2_id: string): void {
+    this.conversationService.getConversationsByIdUnique(this.musicienService.getCookie(this.cookieId), musicien2_id)
       .pipe(
         map(conversations => conversations.map(conversation => conversation.message))
       )
@@ -139,10 +144,10 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
   /**
    * ajoute les id utilisateur et receveur au formulaire
    */
-  ajoutFormId(): void {
+  ajoutFormId(musicien2_id: string): void {
     this.form.patchValue({
-      'user1_id': this.musicienService.getCookie(this.cookieId),
-      'user2_id': this.route.snapshot.paramMap.get('user2_id') || '0'
+      'musicien1_id': this.musicienService.getCookie(this.cookieId),
+      'musicien2_id': musicien2_id
     });
   }
 }

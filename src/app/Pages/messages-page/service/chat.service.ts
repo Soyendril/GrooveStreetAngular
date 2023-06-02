@@ -31,10 +31,8 @@ export class ChatService {
    * @param message 
    */
   public sendMessage(message: any) {
-    console.log("iduser2 : " + message.user2_id);
+    console.log("musicien2 : " + message.musicien2_id);
     this.stomp.publish({
-      // en cours de codage
-      // a mettre pour message privé
       // correspond à @MessageMapping("/send-message") du back
       destination: `/app/private-message`,
       //      destination: `/app/send-message`,
@@ -51,8 +49,8 @@ export class ChatService {
    */
 
   
-  public subscribeToTopic(user1_id: string) {
-    return this.stomp.watch(`/topic/private/${user1_id}`);
+  public subscribeToTopic(musicien1_id: string) {
+    return this.stomp.watch(`/topic/private/${musicien1_id}`);
   }
 
   
