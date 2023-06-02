@@ -1,0 +1,11 @@
+#contain-login{
+    width: 80%;
+    height: 90%;
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+input{
+    margin: 10px;
+}

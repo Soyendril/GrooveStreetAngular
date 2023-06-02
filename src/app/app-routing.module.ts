@@ -11,7 +11,8 @@ import { AjoutPhotoPageComponent } from './Pages/ajout-photo-page/ajout-photo-pa
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
-import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
+import { RegisterComponent } from './authentification/register/register.component';
+import { LoginComponent } from './authentification/login/login.component';
 
 const routes: Routes = [
   //HOMEPAGE
@@ -29,8 +30,12 @@ const routes: Routes = [
   //PROFIL AUTRE
   { path: 'Profile/:id', component: ProfilPersonnePageComponent },
   //FORMULAIRE
-  { path: 'Connect', component:FormulaireConnexionComponent},
   { path: 'Inscription', component:FormulairePageComponent},
+  // authentification
+  { path: 'login', component:LoginComponent},
+  { path: 'register', component:RegisterComponent},
+  // detail de la conversation entre musiciens
+  { path: 'messages/:musicien2_id', component: DiscussionPageComponent },
 ];
 
 @NgModule({

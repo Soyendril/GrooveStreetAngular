@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { CookieModule } from 'ngx-cookie';
 import { RxStomp } from '@stomp/rx-stomp';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
@@ -16,12 +17,11 @@ import { NavbarComponent } from './Commons/navbar/navbar.component';
 import { ProfilPersonnePageComponent } from './Pages/profil-personne-page/profil-personne-page.component';
 import { BioPageComponent } from './Pages/bio-page/bio-page.component';
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
-import { FormulaireConnexionComponent } from './Pages/formulaire-page/formulaire-connexion/formulaire-connexion.component';
-import { FormsModule } from '@angular/forms';
 import { BoutonsStyleComponent } from './components/boutons-style/boutons-style.component';
 import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-bas.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { RegisterComponent } from './authentification/register/register.componen
     ProfilPersonnePageComponent,
     BioPageComponent,
     FormulairePageComponent,
-    FormulaireConnexionComponent,
     NavBoutonsBasComponent,
     NavBoutonsBasComponent,
     BoutonsStyleComponent,
@@ -48,7 +47,8 @@ import { RegisterComponent } from './authentification/register/register.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-  
+    ReactiveFormsModule,
+    CookieModule.withOptions()
   ],
   providers: [
     {
@@ -61,7 +61,8 @@ import { RegisterComponent } from './authentification/register/register.componen
         rxStomp.activate();
         return rxStomp;
       },
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import Musicien from '../model/musicien.model';
+import { MusicienService } from '../services/musicien.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
-// declaration des champs du formulaire
+  // declaration des champs du formulaire
   // pas besoin de générer les FormControls
   // On précise aussi les validations
-  formUser: FormGroup = this.formBuilder.group({
-    userName: ['', Validators.required],
+  formMusicien: FormGroup = this.formBuilder.group({
+    nom: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required]
@@ -22,9 +26,9 @@ export class RegisterComponent {
 
   // Declaration du detail user vide
   // cree une variable pour envoyer le contenu du formulaire
-  user: User = {
+  musicien: Musicien = {
     id: null,
-    userName: '',
+    nom: '',
     email: '',
     password: ''
   };
@@ -35,29 +39,29 @@ export class RegisterComponent {
   // Declaration du formulaire dans le constructeur
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private musicienService: MusicienService
   ) {
   }
 
   onSubmit(): boolean {
     this.submitted = true;
     // Appel du validateur 'invalid' pour vérifier le formulaire
-    if (this.formUser.invalid) {
+    if (this.formMusicien.invalid) {
       console.log("Formulaire non valide");
       return false;
     } else {
       // recupere le contenu du formulaire
-      this.user = {
+      this.musicien = {
         id: null,
-        userName: this.formUser.value.userName,
-        email: this.formUser.value.email,
-        password: this.formUser.value.password
+        nom: this.formMusicien.value.nom,
+        email: this.formMusicien.value.email,
+        password: this.formMusicien.value.password
       };
 
-      console.log("Utilisateur : " + this.user);
+      console.log("Musicien : " + this.musicien);
 
       // ajoute un nouvel utilisateur
-      this.newUser();
+      this.newMusicien();
       // efface le contenu du formulaire
 
       // redirige page d'accueil
@@ -65,8 +69,8 @@ export class RegisterComponent {
     }
   }
 
-  private newUser() {
-    this.userService.addUser(this.user)
+  private newMusicien() {
+    this.musicienService.addUser(this.musicien)
       .subscribe(
         response => {
           console.log('Utilisateur créé avec succès', response);
@@ -76,17 +80,19 @@ export class RegisterComponent {
         }
       );
   }
-  
+
   verifPassword(field1: string, field2: string) {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const fieldValue1 = control.get(field1)?.value;
       const fieldValue2 = control.get(field2)?.value;
-  
+
       if (fieldValue1 !== fieldValue2) {
         control.get('confirmPassword')?.setErrors({ verifPassword: true });
         return { verifPassword: true };
       }
-        return null;
+      return null;
     };
   }
+
+
 }
