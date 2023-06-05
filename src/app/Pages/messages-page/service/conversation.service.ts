@@ -24,9 +24,9 @@ export class ConversationService {
    * @param conversationId 
    * @returns conversations uniquement pour l'utilisateur en cours
    */
-  getConversationsById(conversationId: string): Observable<Conversation[]> {
+  getConversationsById(conversationId: string): Observable<any[]> {
     const url = `${this.apiUrl}/${conversationId}`;
-    return this.http.get<Conversation[]>(url);
+    return this.http.get<any[]>(url);
   }
 
   /**
