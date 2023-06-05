@@ -1,6 +1,6 @@
 <h2>Liste des discussions</h2>
 <div id="contain-messagaes">
-    <div *ngFor="let musicien of musiciens">
+    <div *ngFor="let musicien of messages">
         <a [routerLink]="['/messages', musicien.id]">Conversation avec {{ musicien.nom }}</a>
       </div>
 </div>

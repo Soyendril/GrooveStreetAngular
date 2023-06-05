@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map, BehaviorSubject, count } from 'rxjs';
 import { CookieOptions, CookieService } from 'ngx-cookie';
 import Musicien from '../model/musicien.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicienService {
 
-private readonly apiUrl = 'http://localhost:8080/musiciens';
+  private readonly apiUrl = 'http://localhost:8080/musiciens';
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
@@ -46,11 +47,6 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
     return this.http.get<Musicien>(url);
   }
 
-  getUserAuth(email: string, password: string): Observable<any> {
-    const url = `${this.apiUrl}/${email}/${password}`;
-    return this.http.get<any>(url);
-  }
-
   /**
    * methode de connexion
    */
@@ -85,30 +81,14 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
    * si le back ne renvoi pas "not" on stocke le cookie et renvoi true
    * sinon renvoi false
    */
-  authenticate(email: string, password: string) {
+  authenticate(formUser: FormGroup) {
     // creation du nom de cookie par rapport au port du localhost de l'application utilisée
     const port = window.location.port;
     const cookieId = `id_${port}`;
     const cookieEmail = `email_${port}`;
 
-    return this.getUserAuth(email, password).subscribe(
-      (response: any) => {
-        if (response.nom != "not" && response.id != "not") {
-          this.putCookie(cookieId, ("" + response.id));
-          this.putCookie(cookieEmail, response.email);
-          console.log("test true");
-          return true;
-        } else {
-          console.log("mauvaise connexion");
-          return false;
-        }
-      },
-      (error: any) => {
-        // Gérez l'erreur de la requête GET ici
-        console.log("erreur");
-        return false;
-      }
-    );
+    const url = `${this.apiUrl}/verifAuth`;
+    return this.http.post(url, formUser);
   }
 
   getCookie(key: string) {
@@ -124,4 +104,5 @@ private readonly apiUrl = 'http://localhost:8080/musiciens';
     this.cookieService.put(key, value);
     console.log("Le cookie mauvais : " + key + " : " + value);
   }
+ 
 }

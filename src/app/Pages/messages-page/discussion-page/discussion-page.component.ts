@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './discussion-page.component.html',
   styleUrls: ['./discussion-page.component.css']
 })
-export class DiscussionPageComponent implements OnDestroy, OnInit{
+export class DiscussionPageComponent implements OnDestroy, OnInit {
   currentDate = new Date();
   formattedDateTime = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
 
@@ -22,15 +22,12 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
     'musicien1_id': new FormControl(""),
     'musicien2_id': new FormControl(""),
     'message': new FormControl(),
-    'date': new FormControl(this.formattedDateTime)
+    'date': new FormControl()
   })
-  laDate: Date = new Date();
-  dateAFormater!: string;
-
+ 
   messages: any[] = [];
   lastUserMessage: any = '';
-  newDate!: string;
-
+ 
   // creation du nom de cookie par rapport au port du localhost de l'application utilisée
   cookieId: string;
 
@@ -72,7 +69,6 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
 
     // Recupere les messages de la Bdd relatifs à la conversation : user1 et user2
     this.getMessageConversation(musicien2_id);
-    console.log(this.form.value);
   }
 
 
@@ -98,40 +94,39 @@ export class DiscussionPageComponent implements OnDestroy, OnInit{
 
   /**
    * Recupere la date du jour formatée pour le sql
-   * Envoi l'add en Bdd
+   * Envoi le message en Bdd
    * Envoi la notification de maj du front
    */
   sendMessage() {
-    // this.majDate();
-    // this.notifierService.send(this.form.value);
+    this.majDateForm();
+
     this.chatservice.sendMessage(this.form.value);
     this.form.patchValue({
       message: ''
     });
   }
 
+  /**
+   * deconnecte le chat à sortie du composant
+   */
   ngOnDestroy() {
     this.disconnect();
   }
 
+
   /**
-   *   Formate la date : 2023-04-10 10:00:00
-   *   pour etre acceptée en bdd 
+   * Maj la date du formulaire
    */
-  majDate() {
-    this.dateAFormater = this.laDate.toISOString().slice(0, 19).replace('T', ' ');
+
+  majDateForm() {
     this.form.patchValue({
-      date: this.dateAFormater
+      date: this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss')
     });
   }
 
   /**
    * recupere en get les conversations depuis la bdd;
    */
-  private getConversations(): void {
-    this.conversationService.getConversationsById(this.musicienService.getCookie(this.cookieId))
-      .subscribe(conversations => this.messages = conversations);
-  }
 
   private getMessageConversation(musicien2_id: string): void {
     this.conversationService.getConversationsByIdUnique(this.musicienService.getCookie(this.cookieId), musicien2_id)
