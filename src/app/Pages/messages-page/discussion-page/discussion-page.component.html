@@ -13,7 +13,7 @@
     </div>
     <div class="input">
       <form>
-        <input (keydown.enter)="sendMessage()" class ="form-control" type="text" [(ngModel)]="newMessage" placeholder="Entrez votre message ici..." >
+        <input  class ="form-control" type="text" [(ngModel)]="newMessage" (keydown.Enter)="sendMessage()" placeholder="Entrez votre message ici..." >
         <button  (click)="sendMessage()" class='Envoyer'>Envoyer</button>
       </form>
     </div>
