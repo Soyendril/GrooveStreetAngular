@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   isOnSwipe: boolean;
-  selectedButton: number=1;
+  selectedButton: number=2;
 
   constructor(private router: Router) {
     this.isOnSwipe = this.router.url === 'Grooves/:id';
