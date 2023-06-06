@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProfilNavigationService } from "src/app/Pages/messages-page/service/profil-navigation.service";
 
 @Component({
   selector: 'app-nav-boutons-bas',
@@ -15,4 +16,9 @@ export class NavBoutonsBasComponent {
       "like": "./assets/img/like.png"
     }
   ]
+  constructor(public profilNavigationService: ProfilNavigationService) { }
+
+  navigateToRandomMusicien(): void {
+    this.profilNavigationService.navigateToRandomMusicien();
+  }
 }

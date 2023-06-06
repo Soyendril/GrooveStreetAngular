@@ -1,6 +1,5 @@
 <div id="contain-boutons">
-    <app-boutons-style [imageUrl]="imageUrl[0].switch"></app-boutons-style>
+    <app-boutons-style (click)="navigateToRandomMusicien()"><img [src]="imageUrl[0].switch" alt="Switch"></app-boutons-style>
     <app-boutons-style [imageUrl]="imageUrl[0].superlike"></app-boutons-style>
     <app-boutons-style [imageUrl]="imageUrl[0].like"></app-boutons-style>
 </div>
-
