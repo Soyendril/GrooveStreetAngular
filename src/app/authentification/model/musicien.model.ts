@@ -1,6 +1,9 @@
-export default interface Musicien{
-    id: number | null | string;
-    nom: string;
-    password: string;
-    email: string;
+export default class Musicien{
+constructor(
+  public id: number | null | string,
+  public nom: string,
+  public password: string,
+  public email: string,
+  public pseudo: string
+){}
   }

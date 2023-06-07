@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import Musicien from '../model/musicien.model';
-import { MusicienService } from '../services/musicien.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,8 @@ export class RegisterComponent {
     nom: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    confirmPassword: ['', Validators.required]
+    confirmPassword: ['', Validators.required],
+    pseudo: [''],
   }, {
     validators: this.verifPassword('password', 'confirmPassword')
   }
@@ -30,7 +31,8 @@ export class RegisterComponent {
     id: null,
     nom: '',
     email: '',
-    password: ''
+    password: '',
+    pseudo: ''
   };
 
   // declaration boolean
@@ -39,7 +41,7 @@ export class RegisterComponent {
   // Declaration du formulaire dans le constructeur
   constructor(
     private formBuilder: FormBuilder,
-    private musicienService: MusicienService
+    private authService: AuthService
   ) {
   }
 
@@ -55,7 +57,8 @@ export class RegisterComponent {
         id: null,
         nom: this.formMusicien.value.nom,
         email: this.formMusicien.value.email,
-        password: this.formMusicien.value.password
+        password: this.formMusicien.value.password,
+        pseudo: this.formMusicien.value.nom
       };
 
       console.log("Musicien : " + this.musicien);
@@ -69,17 +72,42 @@ export class RegisterComponent {
     }
   }
 
+  /**
+   * cree le musicien
+   * cree le cookie de connexion
+   * redirige vers la page d'accueil
+   */
   private newMusicien() {
-    this.musicienService.addUser(this.musicien)
-      .subscribe(
-        response => {
+    // variables necessaires aux cookies
+    const port = window.location.port;
+    const cookieId = `id_${port}`;
+    const cookieEmail = `email_${port}`;
+
+    // version recommandée de subscribe
+    this.authService.addUser(this.musicien).
+      subscribe({
+        next: (response) => {
           console.log('Utilisateur créé avec succès', response);
+          const id = response.id +"";
+          this.authService.authenticateOk(id, this.musicien.email)
         },
-        error => {
-          console.error('Une erreur s\'est produite lors de la création de l\'utilisateur', error);
-        }
-      );
+        error: (error) =>
+          console.error("Une erreur s'est produite lors de la création de l'utilisateur", error),
+        complete: () =>
+          console.info('')
+      })
+
+    // version depreciee de subscribe
+    // this.musicienService.addUser(this.musicien).
+    // subscribe(response => {
+    //   console.log('Utilisateur créé avec succès', response);
+    // },
+    //   error => {
+    //     console.error('Une erreur s\'est produite lors de la création de l\'utilisateur', error);
+    //   }
+    // );
   }
+
 
   verifPassword(field1: string, field2: string) {
     return (control: AbstractControl): { [key: string]: any } | null => {

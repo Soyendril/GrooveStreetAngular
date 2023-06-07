@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MusicienService } from 'src/app/authentification/services/musicien.service';
+import { AuthService } from 'src/app/authentification/services/auth.service';
 import { ChatService } from '../service/chat.service';
 import { DatePipe } from '@angular/common';
 
@@ -39,7 +39,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public conversationService: ConversationService,
-    private musicienService: MusicienService,
+    private authService: AuthService,
     private chatservice: ChatService,
     private datePipe: DatePipe) {
     this.connect();
@@ -59,7 +59,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
      * 
      * A faire => gestion de l'id
      */
-    this.chatservice.subscribeToTopic(this.musicienService.getCookie(this.cookieId)).subscribe((message) => {
+    this.chatservice.subscribeToTopic(this.authService.getCookie(this.cookieId)).subscribe((message) => {
       const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
       this.messages.push(parsedMessage.message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
     });
@@ -129,7 +129,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
    */
 
   private getMessageConversation(musicien2_id: string): void {
-    this.conversationService.getConversationsByIdUnique(this.musicienService.getCookie(this.cookieId), musicien2_id)
+    this.conversationService.getConversationsByIdUnique(this.authService.getCookie(this.cookieId), musicien2_id)
       .pipe(
         map(conversations => conversations.map(conversation => conversation.message))
       )
@@ -141,7 +141,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
    */
   ajoutFormId(musicien2_id: string): void {
     this.form.patchValue({
-      'musicien1_id': this.musicienService.getCookie(this.cookieId),
+      'musicien1_id': this.authService.getCookie(this.cookieId),
       'musicien2_id': musicien2_id
     });
   }

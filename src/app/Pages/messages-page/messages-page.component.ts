@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MusicienService } from 'src/app/authentification/services/musicien.service';
+import { AuthService } from 'src/app/authentification/services/auth.service';
 import { ConversationService } from './service/conversation.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class MessagesPageComponent implements OnInit {
   cookieId: string;
 
   constructor(
-    private musicienService: MusicienService,
+    private authService: AuthService,
     private conversationService: ConversationService
   ) {
     const port = window.location.port;  // recupere le port du localhost
@@ -26,7 +26,7 @@ export class MessagesPageComponent implements OnInit {
   ngOnInit() {
     // met a jour la liste des discussions
     this.getListConversationById();
-    this.musicienId = this.musicienService.getCookie(this.cookieId);
+    this.musicienId = this.authService.getCookie(this.cookieId);
   }
 
   /**
@@ -34,7 +34,7 @@ export class MessagesPageComponent implements OnInit {
    * compactée par le back en userName avec l'id
    */
   getListConversationById() {
-    this.conversationService.getListConversationById(this.musicienService.getCookie(this.cookieId)).subscribe({
+    this.conversationService.getListConversationById(this.authService.getCookie(this.cookieId)).subscribe({
       next: (conversationDto) => {
         this.messages = conversationDto;
       },
