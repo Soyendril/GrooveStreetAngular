@@ -6,6 +6,11 @@
     <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
     <h3>Notre objectif</h3>
     <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
-    <button routerLink="/login">Connexion</button>
-    <button routerLink="/register">Inscription</button>
+    <div *ngIf="!isAuthenticated">
+        <button routerLink="/login">Connexion</button>
+        <button routerLink="/register">Inscription</button>
+    </div>
+    <div *ngIf="isAuthenticated">
+        <button (click)="logout()">Se déconnecter</button>
+    </div>
 </div>
