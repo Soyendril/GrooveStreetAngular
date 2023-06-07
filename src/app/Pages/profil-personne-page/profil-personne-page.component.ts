@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Musicien from '../model/musicien.model';
 import { MusicienService } from '../Services/musicien.service';
+import { MusicienCommunicationService } from '../Services/musicien-communication.service';
 
 @Component({
   selector: 'app-profil-personne-page',
@@ -8,6 +9,7 @@ import { MusicienService } from '../Services/musicien.service';
   styleUrls: ['./profil-personne-page.component.css']
 })
 export class ProfilPersonnePageComponent implements OnInit {
+
 
   musicien: Musicien = {
     id: null,
@@ -22,7 +24,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     age: undefined
   };
 
-  constructor(private musicienService: MusicienService) { }
+  constructor(private musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService) { }
 
   /*
     On souscrit à l'observable de musicien.service.ts
@@ -30,6 +33,9 @@ export class ProfilPersonnePageComponent implements OnInit {
   */
   ngOnInit() {
     this.updateMusicien();
+    this.musicienCommunicationService.getNextMusicien$.subscribe(() => {
+      this.updateMusicien();
+    });
   }
 
   updateMusicien() {
