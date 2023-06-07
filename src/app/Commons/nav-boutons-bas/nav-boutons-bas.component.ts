@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MusicienService } from 'src/app/Pages/Services/musicien.service';
 import Musicien from 'src/app/Pages/model/musicien.model';
-
+import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
 
 @Component({
   selector: 'app-nav-boutons-bas',
@@ -9,7 +9,9 @@ import Musicien from 'src/app/Pages/model/musicien.model';
   styleUrls: ['./nav-boutons-bas.component.css']
 })
 export class NavBoutonsBasComponent {
-  @Output() musicienUpdated = new EventEmitter();
+
+  // @Output() musicienUpdated = new EventEmitter();
+
 
   musicien: Musicien = {
     id: null,
@@ -32,20 +34,21 @@ export class NavBoutonsBasComponent {
       "like": "./assets/img/like.png"
     }
   ]
-  constructor(public musicienService: MusicienService) {  }
+  profilConsulted: any;
+  constructor(public musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService) {  }
 
 
   getNextMusicien() {
-    this.musicienService.getRandomMusicien().subscribe(
+    this.musicienService.switchRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
-        console.log(this.musicien);
-        this.musicienUpdated.emit(this.musicien.id);
+        console.log(data);
+        this.musicienCommunicationService.getNextMusicien(this.musicien); // Émet l'événement
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
 }

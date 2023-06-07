@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Musicien from '../model/musicien.model';
 import { MusicienService } from '../Services/musicien.service';
+import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
+
 
 @Component({
   selector: 'app-profil-personne-page',
@@ -8,6 +10,7 @@ import { MusicienService } from '../Services/musicien.service';
   styleUrls: ['./profil-personne-page.component.css']
 })
 export class ProfilPersonnePageComponent implements OnInit {
+
 
   musicien: Musicien = {
     id: null,
@@ -22,7 +25,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     age: undefined
   };
 
-  constructor(private musicienService: MusicienService) { }
+  constructor(private musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService) { }
 
   /*
     On souscrit à l'observable de musicien.service.ts
@@ -30,12 +34,28 @@ export class ProfilPersonnePageComponent implements OnInit {
   */
   ngOnInit() {
     this.updateMusicien();
+    this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
+      this.musicien = musicien;
+    });
   }
 
   updateMusicien() {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getNextMusicien() {
+    this.musicienService.switchRandomMusicien().subscribe(
+      (data) => {
+        this.musicien = data;
+        // this.musicienUpdated.emit(this.musicien.id);
+        console.log(data);
       },
       (error) => {
         console.log(error);
