@@ -10,7 +10,7 @@ import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-co
 })
 export class NavBoutonsBasComponent {
 
-  @Output() musicienUpdated = new EventEmitter();
+  // @Output() musicienUpdated = new EventEmitter();
 
 
   musicien: Musicien = {
@@ -35,21 +35,20 @@ export class NavBoutonsBasComponent {
     }
   ]
   profilConsulted: any;
-  constructor(public musicienService: MusicienService, private musicienCommunicationService: MusicienCommunicationService) {  }
+  constructor(public musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService) {  }
 
 
   getNextMusicien() {
     this.musicienService.switchRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
-        this.musicienUpdated.emit(this.musicien.id);
         console.log(data);
-
+        this.musicienCommunicationService.getNextMusicien(this.musicien); // Émet l'événement
       },
       (error) => {
         console.log(error);
       }
     );
-    this.musicienCommunicationService.emitGetNextMusicien();
   }
 }

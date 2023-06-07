@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import Musicien from '../model/musicien.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicienCommunicationService {
-  private getNextMusicienSource = new BehaviorSubject<boolean>(false);
+
+  private getNextMusicienSource = new Subject<Musicien>();
   getNextMusicien$ = this.getNextMusicienSource.asObservable();
 
-  emitGetNextMusicien() {
-    this.getNextMusicienSource.next(true);
+  getNextMusicien(musicien: Musicien) {
+    this.getNextMusicienSource.next(musicien);
   }
 }
