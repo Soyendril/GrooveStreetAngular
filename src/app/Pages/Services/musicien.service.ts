@@ -16,7 +16,7 @@ export class MusicienService {
   /*
     On reprend Musicien en observable
     On génère un index au hasard qu'on passe sur la liste des IDs
-    On obitent un ID qu'onon passe à la fonction getMusicienById
+    On obtient un ID qu'on passe à la fonction getMusicienById
   */
   getRandomMusicien(): Observable<Musicien> {
     return this.getMusicienIds().pipe(

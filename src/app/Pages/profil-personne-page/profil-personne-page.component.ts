@@ -29,6 +29,10 @@ export class ProfilPersonnePageComponent implements OnInit {
     Pour faire passer la data du back dans les attributs 'musicien'
   */
   ngOnInit() {
+    this.updateMusicien();
+  }
+
+  updateMusicien() {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
