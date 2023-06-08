@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, BehaviorSubject, count, switchMap, take, tap, EMPTY } from 'rxjs';
+import { Observable, map, BehaviorSubject, count, switchMap, take, tap, EMPTY, of } from 'rxjs';
 import Musicien from '../model/musicien.model';
 
 
@@ -13,8 +13,10 @@ export class MusicienService {
 
   dislikedMusiciens: any[] = [];
   profilConsulted: boolean = false;
+
   private selectedMusicienIds: number[] = [];
 
+  musiciensEpuises$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -26,10 +28,14 @@ export class MusicienService {
   getRandomMusicien(): Observable<Musicien> {
     return this.getMusicienIds().pipe(
       switchMap(ids => {
-        const availableIds = ids.filter(id => !this.selectedMusicienIds.includes(id));
+        let availableIds = ids.filter(id => !this.selectedMusicienIds.includes(id));
+        console.log("Ids dispos: "+availableIds);
         if (availableIds.length === 0) {
-          // Tous les musiciens ont déjà été sélectionnés
+        // Tous les musiciens ont déjà été sélectionnés
           console.log("Plus de musiciens");
+          this.musiciensEpuises$.next(true);
+          availableIds = [...this.selectedMusicienIds]; // Créer une copie de selectedMusicienIds
+          this.selectedMusicienIds = [];
           return EMPTY;
         }
         const randomIndex = Math.floor(Math.random() * availableIds.length);

@@ -34,8 +34,8 @@ export class NavBoutonsBasComponent {
       "like": "./assets/img/like.png"
     }
   ]
-  profilConsulted: any;
-  constructor(public musicienService: MusicienService,
+
+  constructor(private musicienService: MusicienService,
     private musicienCommunicationService: MusicienCommunicationService) {  }
 
 
