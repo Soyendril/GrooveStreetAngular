@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { ConversationService } from './service/conversation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messages-page',
@@ -16,7 +17,8 @@ export class MessagesPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private conversationService: ConversationService
+    private conversationService: ConversationService,
+    private router: Router
   ) {
     const port = window.location.port;  // recupere le port du localhost
     this.cookieId = `id_${port}`;       // nomme la variable cookieId en id_42xx
@@ -24,9 +26,17 @@ export class MessagesPageComponent implements OnInit {
 
 
   ngOnInit() {
-    // met a jour la liste des discussions
-    this.getListConversationById();
-    this.musicienId = this.authService.getCookie(this.cookieId);
+    // verifie si l'utilisateur est connecté
+    // sinon redirige en page d'accoueil
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['login']);
+    } else {
+      // met a jour la liste des discussions
+      this.getListConversationById();
+      // recupere l'id en cours
+      this.musicienId = this.authService.getCookie(this.cookieId);
+    }
+
   }
 
   /**

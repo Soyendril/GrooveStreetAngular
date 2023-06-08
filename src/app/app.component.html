@@ -1,3 +1,3 @@
-<app-navbar *ngIf="isAuthenticated"></app-navbar>
-<div id="nav-vide" *ngIf="!isAuthenticated"></div>
+<app-navbar *ngIf="isLoggedIn"></app-navbar>
+<div id="nav-vide" *ngIf="!isLoggedIn"></div>
 <router-outlet></router-outlet>

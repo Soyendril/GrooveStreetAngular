@@ -35,6 +35,8 @@ export class RegisterComponent {
     pseudo: ''
   };
 
+  currentMusicienId: string | null = null;
+
   // declaration boolean
   submitted: boolean = false;
 
@@ -61,8 +63,6 @@ export class RegisterComponent {
         pseudo: this.formMusicien.value.nom
       };
 
-      console.log("Musicien : " + this.musicien);
-
       // ajoute un nouvel utilisateur
       this.newMusicien();
       // efface le contenu du formulaire
@@ -78,36 +78,22 @@ export class RegisterComponent {
    * redirige vers la page d'accueil
    */
   private newMusicien() {
-    // variables necessaires aux cookies
-    const port = window.location.port;
-    const cookieId = `id_${port}`;
-    const cookieEmail = `email_${port}`;
-
     // version recommandée de subscribe
-    this.authService.addUser(this.musicien).
+    this.authService.addMusicien(this.musicien).
       subscribe({
         next: (response) => {
           console.log('Utilisateur créé avec succès', response);
-          const id = response.id +"";
-          this.authService.authenticateOk(id, this.musicien.email)
+          // this.authService.authenticateOk(id, this.musicien.email)
+          this.currentMusicienId = response.id
+
+          this.authService.createAuth(this.currentMusicienId, this.musicien);
         },
         error: (error) =>
           console.error("Une erreur s'est produite lors de la création de l'utilisateur", error),
         complete: () =>
           console.info('')
       })
-
-    // version depreciee de subscribe
-    // this.musicienService.addUser(this.musicien).
-    // subscribe(response => {
-    //   console.log('Utilisateur créé avec succès', response);
-    // },
-    //   error => {
-    //     console.error('Une erreur s\'est produite lors de la création de l\'utilisateur', error);
-    //   }
-    // );
   }
-
 
   verifPassword(field1: string, field2: string) {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -121,6 +107,4 @@ export class RegisterComponent {
       return null;
     };
   }
-
-
 }

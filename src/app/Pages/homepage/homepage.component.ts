@@ -9,7 +9,9 @@ import { AuthService } from 'src/app/authentification/services/auth.service';
 })
 export class HomepageComponent implements OnInit {
 
-  isAuthenticated:boolean = false;
+    // id subscription
+    isLoggedIn: boolean = false;
+    private loggedInSubscription!: Subscription;
 
   constructor(
     private authService: AuthService
@@ -21,7 +23,11 @@ export class HomepageComponent implements OnInit {
    * ou le bouton de déconnexion
    */
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isLoggedIn();
+    this.isLoggedIn = this.authService.isLoggedIn();
+
+    this.loggedInSubscription = this.authService.getLoggedInSubject().subscribe((isLoggedIn: boolean) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   
@@ -30,6 +36,6 @@ export class HomepageComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
-    this.isAuthenticated = false;
+    this.isLoggedIn = false;
   }
 }

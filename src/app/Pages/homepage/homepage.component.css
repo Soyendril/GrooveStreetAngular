@@ -7,8 +7,9 @@
 
 #accueil button{
     margin: 10px;
-    width: 20vw;
+    width: 30vw;
     height: auto;
+    padding: 4px;
     border-radius: 15px;
     border: none;
     background-color:  #0FA47A;

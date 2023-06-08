@@ -21,8 +21,8 @@ const routes: Routes = [
   //LIKE ou DISLIKE
   { path: 'Grooving', component: ChoixPersonnePageComponent },
   //DISCUSSION
-  { path: 'Grooves', component: MessagesPageComponent },
-  { path: 'Grooves/:id', component: DiscussionPageComponent },
+  { path: 'grooves', component: MessagesPageComponent },
+  { path: 'grooves/:id', component: DiscussionPageComponent },
   //PROFIL PERSO
   { path: 'Bio', component: BioPageComponent },
   { path: 'Bio/EditPhoto', component: AjoutPhotoPageComponent },

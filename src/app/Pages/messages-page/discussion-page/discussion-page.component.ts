@@ -24,10 +24,10 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     'message': new FormControl(),
     'date': new FormControl()
   })
- 
+
   messages: any[] = [];
   lastUserMessage: any = '';
- 
+
   // creation du nom de cookie par rapport au port du localhost de l'application utilisée
   cookieId: string;
 
@@ -48,8 +48,12 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-
-    // On récupère la partie 'type' de l'URL
+    // verifie si l'utilisateur est connecté
+    // sinon redirige en page d'accoueil
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['home']);
+    } else {
+   // On récupère la partie 'type' de l'URL
     // renvoi 0 si pas de valeur
     const musicien2_id = this.route.snapshot.paramMap.get('musicien2_id') || '0';
 
@@ -69,6 +73,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
 
     // Recupere les messages de la Bdd relatifs à la conversation : user1 et user2
     this.getMessageConversation(musicien2_id);
+    }
   }
 
 

@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
   title = 'Groove-street-Angular';
 
   // id subscription
-  private musicienSub!: Subscription;
-  isAuthenticated = false;
+  isLoggedIn: boolean = false;
+  private loggedInSubscription!: Subscription;
 
   constructor(
     private authService: AuthService
@@ -25,19 +25,16 @@ export class AppComponent implements OnInit {
     // inscription du musicien
     
     // recupere le subject musicien
-    this.authService.autoLogin();
-    
-    this.isAuthenticated = this.authService.isLoggedIn();
+    // this.authService.autoLogin();
+    this.isLoggedIn = this.authService.isLoggedIn();
 
-    this.musicienSub = this.authService.musicien.subscribe(musicien => {
-      this.isAuthenticated = musicien !== null;
+    this.loggedInSubscription = this.authService.getLoggedInSubject().subscribe((isLoggedIn: boolean) => {
+      this.isLoggedIn = isLoggedIn;
     });
-
   }
 
   ngOnDestroy() {
-    this.musicienSub.unsubscribe();
-    this.authService.logout();
-    this.isAuthenticated = false;
+    this.loggedInSubscription.unsubscribe();
+    // this.isAuthenticated = false;
   }
 }
