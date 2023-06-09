@@ -10,14 +10,19 @@
         <button routerLink="/login">Connexion</button>
         <button routerLink="/register">Inscription</button>
     </div>
-    <div *ngIf="isAuthenticated">
-        
-    
-        <p class="shadow"><img src="/assets/img/settings.png" alt="settings"></p>
-        <p class="shadow"><img src="/assets/img/logocamera.png" alt="add picture"></p>
-        <p class="shadow"><img src="/assets/img/edit.png" alt="edit profile"></p>
-
-        <button class="logout" (click)="logout()">Se déconnecter </button>
+    <div *ngIf="isAuthenticated">   
+        <div class="shadow">
+            <img src="/assets/img/settings.png" alt="settings">
+        </div>
+        <div class="shadow">
+            <img src="/assets/img/logocamera.png" alt="add picture">
+        </div>
+        <div class="shadow">
+            <img src="/assets/img/edit.png" alt="edit profile">
+        </div>
+        <div class="logout-container">
+            <button class="logout" (click)="logout()">Déconnexion</button>
+        </div>
 
     </div>
 </div>

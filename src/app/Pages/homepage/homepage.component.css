@@ -7,7 +7,7 @@
 
 #accueil button{
     margin: 10px;
-    width: 20vw;
+    width: auto;
     height: auto;
     border-radius: 15px;
     border: none;
@@ -15,6 +15,7 @@
     transition: ease-in-out;
     font-weight: bold;
     font-size: 1.2em;
+
 }
 
 #accueil button:hover{
@@ -24,7 +25,10 @@
 }
 .logout{
     background-color: red !important;
-
+    padding: 5px 10px; 
+    white-space: nowrap; /* Empêche le texte de se retourner à la ligne */
+    width: auto;
+    
 }
 .logout button:hover{
     background-color: #f5f5f5;
@@ -49,6 +53,22 @@ p,h1,h3{
 }
 .shadow{
     text-shadow: 2px 2px 0 var(--color-black), 2px -2px 0 var(--color-black), -2px 2px 0 var(--color-black), -2px -2px 0 var(--color-black), 2px 0px 0 var(--color-black), 0px 2px 0 var(--color-black), -2px 0px 0 var(--color-black), 0px -2px 0 var(--color-black);
+    display: inline;
+    margin: 5px;
 
 }
-
+.shadow img{
+    height: auto;
+    width: 75px;
+}
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.shadow-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
