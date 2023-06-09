@@ -20,7 +20,7 @@ export class ProfilPersonnePageComponent implements OnInit {
     description: '',
     style: '',
     photo: '',
-    codePostal: undefined,
+    codePostal: '',
     age: undefined
   };
 
