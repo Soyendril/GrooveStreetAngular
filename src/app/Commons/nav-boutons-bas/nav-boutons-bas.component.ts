@@ -35,20 +35,25 @@ export class NavBoutonsBasComponent {
     }
   ]
 
-  constructor(private musicienService: MusicienService,
+  constructor(private _musicienService: MusicienService,
     private musicienCommunicationService: MusicienCommunicationService) {  }
 
 
   getNextMusicien() {
-    this.musicienService.switchRandomMusicien().subscribe(
+    this._musicienService.switchRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
-        console.log(data);
         this.musicienCommunicationService.getNextMusicien(this.musicien); // Émet l'événement
+        this.musicienService.profilConsulted$.next(false);
+        this.musicienService.musiciensEpuises$.next(false);
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  get musicienService(): MusicienService {
+    return this._musicienService;
   }
 }

@@ -1,9 +1,7 @@
-<!-- <div *ngIf="profilConsulted">
-  <h1>Tous les profils ont été consultés.</h1>
-</div> -->
-
-<div id="contain-boutons">
-    <app-boutons-style (click)="getNextMusicien()" [imageUrl]="imageUrl[0].switch"></app-boutons-style>
-    <app-boutons-style [imageUrl]="imageUrl[0].superlike"></app-boutons-style>
-    <app-boutons-style [imageUrl]="imageUrl[0].like"></app-boutons-style>
+<div>
+  <div id="contain-boutons">
+      <app-boutons-style (click)="getNextMusicien()" [imageUrl]="imageUrl[0].switch"></app-boutons-style>
+      <app-boutons-style [imageUrl]="imageUrl[0].superlike"></app-boutons-style>
+      <app-boutons-style [imageUrl]="imageUrl[0].like"></app-boutons-style>
+  </div>
 </div>
