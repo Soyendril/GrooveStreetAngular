@@ -16,7 +16,7 @@ import Musicien from 'src/app/authentification/model/musicien.model';
   styleUrls: ['./discussion-page.component.css']
 })
 export class DiscussionPageComponent implements OnDestroy, OnInit {
-  currentDate = new Date();
+  currentDate: Date = new Date();
   formattedDateTime = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
 
   form = new FormGroup({
@@ -162,7 +162,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
   
   ajoutFormId(musicien2_id: string): void {
     this.form.patchValue({
-      'musicien1_id': this.authService.getCookie(this.cookieId),
+      'musicien1_id': this.musicien.id,
       'musicien2_id': musicien2_id
     });
   }

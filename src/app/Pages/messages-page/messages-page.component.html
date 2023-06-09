@@ -1,6 +1,14 @@
-<h2>Liste des discussions</h2>
+<div id="liste-contacts">
+  <h2>Your Grooves</h2>
 <div id="contain-messagaes">
     <div *ngFor="let musicien of messages">
-        <a [routerLink]="['/messages', musicien.id]">Conversation avec {{ musicien.nom }}</a>
+      <div class="img-logo">
+        <img [src]="cheminPhotos + musicien.photo" id="logosite" alt="Groove Street">
+    </div>
+
+        <a [routerLink]="['/messages', musicien.id]" class="btnOne btnLarge">
+          Conversation avec {{ musicien.nom }}
+        </a>
       </div>
+</div>
 </div>

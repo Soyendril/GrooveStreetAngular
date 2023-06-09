@@ -2,16 +2,16 @@
     <div id="titre">
         <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
     </div>
-    <h1> Qui sommes nous?</h1>
+    <h1> Qui sommes nous ?</h1>
     <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
-    <h3>Notre objectif</h3>
+    <h3>Notre objectif :</h3>
     <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
     <p>Vous devez devenir membre pour bénéficier de nos services</p>
     <div *ngIf="!isLoggedIn">
-        <button routerLink="/login">Connexion</button>
-        <button routerLink="/register">Inscription</button>
+        <button routerLink="/login" class="btnOne">Connexion</button>
+        <button routerLink="/register" class="btnOne">Inscription</button>
     </div>
     <div *ngIf="isLoggedIn">
-        <button (click)="logout()">Se déconnecter</button>
+        <button (click)="logout()" class="btnOne btnLarge">Se déconnecter</button>
     </div>
 </div>

@@ -1,3 +1,5 @@
-<app-navbar *ngIf="isLoggedIn"></app-navbar>
-<div id="nav-vide" *ngIf="!isLoggedIn"></div>
-<router-outlet></router-outlet>
+<div id="homeCentral">
+    <app-navbar *ngIf="isLoggedIn"></app-navbar>
+    <div id="nav-vide" *ngIf="!isLoggedIn"></div>
+    <router-outlet></router-outlet>
+</div>

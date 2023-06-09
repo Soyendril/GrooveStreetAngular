@@ -1,8 +1,41 @@
+#liste-contacts{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 30px;
+    position: absolute;
+    top: 140px;
+}
+
 #contain-messagaes{
+    width: 100%;
     margin: 20px;
     padding: 20px;
+    display: flex;
+    background-color: #333333;
+}
+
+h2{
+    font-size: 1.4rem;
+    color: #fff;
+    text-align: center;
+}
+
+button{
+    width: 100%;
 }
 
 a{
     color: #fff;
+}
+
+.img-logo{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-logo img{
+    width: 30%;
+    height: auto;
 }
