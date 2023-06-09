@@ -11,7 +11,6 @@ import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-co
 })
 export class ProfilPersonnePageComponent implements OnInit {
 
-
   musicien: Musicien = {
     id: null,
     nom: '',
@@ -25,7 +24,7 @@ export class ProfilPersonnePageComponent implements OnInit {
     age: undefined
   };
 
-  constructor(private musicienService: MusicienService,
+  constructor(private _musicienService: MusicienService,
     private musicienCommunicationService: MusicienCommunicationService) { }
 
   /*
@@ -43,6 +42,9 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+        // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
+        this.musicienService.musiciensEpuises$.next(false);
+        this.musicienService.profilConsulted$.next(false);
       },
       (error) => {
         console.log(error);
@@ -50,16 +52,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     );
   }
 
-  getNextMusicien() {
-    this.musicienService.switchRandomMusicien().subscribe(
-      (data) => {
-        this.musicien = data;
-        // this.musicienUpdated.emit(this.musicien.id);
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  get musicienService(): MusicienService {
+    return this._musicienService;
   }
+
 }
