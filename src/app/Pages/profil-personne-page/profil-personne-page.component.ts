@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Musicien from '../model/musicien.model';
 import { MusicienService } from '../Services/musicien.service';
+import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
+
 
 @Component({
   selector: 'app-profil-personne-page',
@@ -22,7 +24,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     age: undefined
   };
 
-  constructor(private musicienService: MusicienService) { }
+  constructor(private _musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService) { }
 
   /*
     On souscrit à l'observable de musicien.service.ts
@@ -30,16 +33,26 @@ export class ProfilPersonnePageComponent implements OnInit {
   */
   ngOnInit() {
     this.updateMusicien();
+    this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
+      this.musicien = musicien;
+    });
   }
 
   updateMusicien() {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+         // Réinitialiser l'indicateur musiciensEpuises$
+        this.musicienService.musiciensEpuises$.next(false);
       },
       (error) => {
         console.log(error);
       }
     );
   }
+
+  get musicienService(): MusicienService {
+    return this._musicienService;
+  }
+
 }
