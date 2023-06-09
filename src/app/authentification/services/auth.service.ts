@@ -27,7 +27,7 @@ export class AuthService {
    *  afin de mettre a jour la connexion/déconnexion
    * et l'affichage des pages persos
    */
-  musicien = new BehaviorSubject<Musicien | null>(null);
+  private musicien = new BehaviorSubject<Musicien | null>(null);
   currentMusicienId: string | null = null;
 
 
@@ -69,6 +69,12 @@ export class AuthService {
     return this.musicien.asObservable(); // Renvoie un Observable de Musicien | null
   }
 
+
+  public getMusicien(): Observable<Musicien | null> {
+    return this.musicien.asObservable();
+  }
+
+
   /**
    * verfie que le musicien est dans la bdd
    * fait un appel en bd pour recuperer si l'utilisateur et le password sont corrects
@@ -92,7 +98,8 @@ export class AuthService {
   }
 
   public getMusicienValue() {
-    console.log(this.musicien.getValue());
+    console.log(this.getCookie(this.cookieMusicien));
+    // console.log(this.musicien.getValue());
   }
 
   /**
@@ -145,6 +152,30 @@ export class AuthService {
   deleteCookie(): void {
     this.cookieService.removeAll();
   }
+
+
+    /**
+   * connecte automatiquement un utilisateur inscrit
+   * utile pour revenir sur l'appli
+   * @returns 
+   */
+    public autoLogin() {
+      console.log("auto")
+      const musicienData: {
+        id: string;
+        nom: string;
+        password: string;
+        email: string;
+        pseudo: string;
+      } = JSON.parse(this.getCookie(this.cookieMusicien));
+      if (!musicienData) {
+        return
+      }
+      const loadedMusicien = new Musicien(
+        musicienData.id, musicienData.nom, musicienData.password, musicienData.email, musicienData.pseudo
+      );
+      this.musicien.next(loadedMusicien);
+    }
 
   ///////////
 
@@ -222,34 +253,7 @@ export class AuthService {
 
 
 
-  /**
-   * connecte automatiquement un utilisateur inscrit
-   * utile pour revenir sur l'appli
-   * @returns 
-   */
-  public autoLogin222222() {
-    console.log("auto")
-    const musicienData: {
-      id: string;
-      nom: string;
-      password: string;
-      email: string;
-      pseudo: string;
-    } = JSON.parse(this.getCookie(this.cookieMusicien));
-    if (!musicienData) {
-      return
-    }
-    const loadedMusicien = new Musicien(
-      musicienData.id, musicienData.nom, musicienData.password, musicienData.email, musicienData.pseudo
-    );
-    console.log("id : " + loadedMusicien.id);
-    console.log("nom : " + loadedMusicien.nom);
-    console.log("password : " + loadedMusicien.password);
-    console.log("email : " + loadedMusicien.email);
-    console.log("pseudo : " + loadedMusicien.pseudo);
-    this.musicien.next(loadedMusicien);
-    console.log("object : " + this.musicien);
-  }
+
 
   /**
  * Action a effectuer lorsque l'authentification est ok

@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { ChatService } from '../service/chat.service';
 import { DatePipe } from '@angular/common';
+import Musicien from 'src/app/authentification/model/musicien.model';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
 
   messages: any[] = [];
   lastUserMessage: any = '';
+  musicien!: Musicien;
 
   // creation du nom de cookie par rapport au port du localhost de l'application utilisée
   cookieId: string;
@@ -53,26 +55,37 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['home']);
     } else {
-   // On récupère la partie 'type' de l'URL
-    // renvoi 0 si pas de valeur
-    const musicien2_id = this.route.snapshot.paramMap.get('musicien2_id') || '0';
+      // met a jour les infos de musicien
+      this.authService.autoLogin();
+      // recupere le contenu de musicien
+      this.authService.getMusicien().subscribe((musicien) => {
+        if (musicien) {
+          this.musicien = musicien;
+        }
+      });
+      // On récupère la partie 'type' de l'URL
+      // renvoi 0 si pas de valeur
+      const musicien2_id = this.route.snapshot.paramMap.get('musicien2_id') || '0';
 
-    /**
-     * se connecte au service,
-     * envoi les messages et les recupere
-     * 
-     * A faire => gestion de l'id
-     */
-    this.chatservice.subscribeToTopic(this.authService.getCookie(this.cookieId)).subscribe((message) => {
-      const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
-      this.messages.push(parsedMessage.message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
-    });
+      /**
+       * se connecte au service,
+       * envoi les messages et les recupere
+       * 
+       * A faire => gestion de l'id
+       */
+      if(this.musicien.id){
+        this.chatservice.subscribeToTopic(this.musicien.id).subscribe((message) => {
+          const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
+          this.messages.push(parsedMessage.message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
+        });
+      }
+      
 
-    // met a jour le formulaire avec les bonnes id
-    this.ajoutFormId(musicien2_id);
+      // met a jour le formulaire avec les bonnes id
+      this.ajoutFormId(musicien2_id);
 
-    // Recupere les messages de la Bdd relatifs à la conversation : user1 et user2
-    this.getMessageConversation(musicien2_id);
+      // Recupere les messages de la Bdd relatifs à la conversation : user1 et user2
+      this.getMessageConversation(musicien2_id);
     }
   }
 
@@ -134,16 +147,19 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
    */
 
   private getMessageConversation(musicien2_id: string): void {
-    this.conversationService.getConversationsByIdUnique(this.authService.getCookie(this.cookieId), musicien2_id)
+    if(this.musicien.id){
+      this.conversationService.getConversationsByIdUnique(this.musicien.id, musicien2_id)
       .pipe(
         map(conversations => conversations.map(conversation => conversation.message))
       )
       .subscribe(messages => this.messages = messages);
+    }
   }
 
   /**
    * ajoute les id utilisateur et receveur au formulaire
    */
+  
   ajoutFormId(musicien2_id: string): void {
     this.form.patchValue({
       'musicien1_id': this.authService.getCookie(this.cookieId),
