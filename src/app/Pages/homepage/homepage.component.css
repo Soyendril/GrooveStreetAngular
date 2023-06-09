@@ -22,14 +22,22 @@
     color:#333333;
     transition: ease-in-out;
 }
+.logout{
+    background-color: red !important;
 
+}
+.logout button:hover{
+    background-color: #f5f5f5;
+    color:#333333;
+    transition: ease-in-out;
+}
 #titre{
     margin: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-img{
+.logosite{
     height: auto;
     width: 25vw;
 }
@@ -39,3 +47,8 @@ p,h1,h3{
     color: aliceblue;
     font-size: 1.2em;
 }
+.shadow{
+    text-shadow: 2px 2px 0 var(--color-black), 2px -2px 0 var(--color-black), -2px 2px 0 var(--color-black), -2px -2px 0 var(--color-black), 2px 0px 0 var(--color-black), 0px 2px 0 var(--color-black), -2px 0px 0 var(--color-black), 0px -2px 0 var(--color-black);
+
+}
+
