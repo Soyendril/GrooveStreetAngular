@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/authentification/services/auth.service';
 export class NavbarComponent implements OnInit, OnDestroy {
 
   isOnSwipe: boolean;
-  selectedButton: number = 1;
+  selectedButton: number = 2;
 
   // variables pour recuperer l'id de la connexion
   musicienId!: string;

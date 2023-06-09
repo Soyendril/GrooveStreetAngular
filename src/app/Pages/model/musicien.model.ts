@@ -7,6 +7,6 @@ export default interface Musicien{
     style: string;
     description: string;
     photo: string;
-    codePostal?: number;
+    codePostal?: string;
 	  age?: number
   }

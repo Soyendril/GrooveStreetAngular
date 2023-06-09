@@ -1,6 +1,6 @@
 <div id="accueil">
     <div id="titre">
-        <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
+        <img class="logosite" src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
     </div>
     <h1> Qui sommes nous ?</h1>
     <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
@@ -12,6 +12,6 @@
         <button routerLink="/register" class="btnOne">Inscription</button>
     </div>
     <div *ngIf="isLoggedIn">
-        <button (click)="logout()" class="btnOne btnLarge">Se déconnecter</button>
+        <button (click)="logout()">Se déconnecter</button>
     </div>
 </div>
