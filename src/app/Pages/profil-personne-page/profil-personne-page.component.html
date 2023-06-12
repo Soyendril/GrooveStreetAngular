@@ -21,21 +21,18 @@
     </div>
   </div>
   <ng-template #elseBlock>
-    <div *ngIf="musicienService.profilConsulted$ | async; else elseBlock">
-      <h1>WESH</h1>
+    <div>
+      <h1>Revoir les profils ?</h1>
+      <button (click)="updateMusicien()">Oui</button>
     </div>
-    <ng-template #elseBlock>
-      <div>
-        <h1>Revoir les profils ?</h1>
-        <button (click)="updateMusicien()">Oui</button>
-      </div>
-    </ng-template>
   </ng-template>
 </div>
 
 <ng-template #elseBlock>
-  <div>
-    <h1>Revoir les profils ignorés?</h1>
-      <button (click)="updateMusicien()">Oui</button>
+  <div class="carte">
+    <div id="contail-profil-personne2">
+      <h1>Revoir les profils ignorés?</h1>
+        <button (click)="updateMusicien()">Oui</button>
+    </div>
   </div>
 </ng-template>

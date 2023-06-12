@@ -17,10 +17,8 @@ export class MusicienService {
   private selectedMusicienIds: number[] = [];
   musiciensEpuises$ = new BehaviorSubject<boolean>(false);
 
-
   constructor(private http: HttpClient) { }
-
-  /*
+  /**
     On reprend Musicien en observable
     On génère un index au hasard qu'on passe sur la liste des IDs
     On obtient un ID qu'on passe à la fonction getMusicienById
