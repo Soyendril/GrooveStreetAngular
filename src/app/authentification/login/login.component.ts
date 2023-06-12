@@ -3,8 +3,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service'
 import Musicien from '../model/musicien.model';
 
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, Subject, Subscription, map} from 'rxjs';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -12,16 +13,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  // pas besoin de générer les FormControls
-  // On précise aussi les validations
   formLogin: FormGroup = this.formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
   }
   )
+
   public loginError: boolean = false;
   musicien!: Musicien;
   errorsAuth: boolean = false;
+  currentMusicienId: string | null = null;
+
+  // id subscription
+  isLoggedIn: boolean = false;
+  private loggedInSubscription!: Subscription;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,16 +39,13 @@ export class LoginComponent {
       return;
     }
 
-    // Appeler le service d'authentification pour effectuer la vérification des informations de connexion
-    // const isAuthenticated = this.musicienService.authenticate();
-    // console.log(isAuthenticated);
-
-    // envoi le formulaire en post au back
-
+    /**
+     * verifie si le musicien est dans la bdd
+     */
     this.isAuthenticated().subscribe((isAuth) => {
       if (isAuth) {
         // Authentification ok
-        console.log("ok")
+        console.log("authtentification ok")
         this.errorsAuth = false;
         // redirection page d'accueil
         this.router.navigate(['home']);
@@ -54,6 +57,7 @@ export class LoginComponent {
       }
     });
 
+
   }
 
   /**
@@ -63,34 +67,64 @@ export class LoginComponent {
    * @returns 
    */
 
-  private isAuthenticated(): Observable<boolean> {
+  private isAuthenticated(): Subject<boolean> {
     const formData = this.formLogin.value;
-    // variables necessaires aux cookies
-    const port = window.location.port;
-    const cookieId = `id_${port}`;
-    const cookieEmail = `email_${port}`;
+    const isAuthenticatedSubject = new Subject<boolean>();
+  
+    this.authService.isMusicien(formData).subscribe((response: any) => {
+      console.log('Utilisateur authentifié avec succès', response);
+      this.currentMusicienId = response.id;
+      this.authService.createAuth(response.id, response);
+      isAuthenticatedSubject.next(true);
+    }, (error) => {
+      console.error('Problème utilisateur ou mot de passe', error);
+      isAuthenticatedSubject.next(false);
+    });
+  
+    return isAuthenticatedSubject;
+  }
+  
 
-    return this.authService.authenticate(formData).pipe(
-      map((response:any) => {
-        console.log(response);
-        // Traitement de la réponse réussie
-        console.log('Utilisateur authentifié avec succès', response);
-        // creation des cookies
-        this.authService.putCookie(cookieId, ("" + response.musicienId));
-        this.authService.putCookie(cookieEmail, this.formLogin.value.email);
-        // creation du subject musicien
-        this.authService.createSubject(formData);
 
-
-        return true; 
-      }),
-      catchError((error) => {
-        console.error(error);
-        // Traitement de l'erreur
-        console.error('Problème utilisateur ou mot de passe', error);
-        return of(false) // Renvoie false lorsque l'authentification échoue
+  /**
+   * recupere un musicien depuis le back grace à son id
+   */
+  getMusicienInfos(): Observable<void> {
+    if(!this.currentMusicienId){
+      this.currentMusicienId="";
+    }
+    return this.authService.getMusicienInfos(this.currentMusicienId).pipe(
+      map((response) => {
+        this.musicien = response;
+        console.log("test est stst ststst");
       })
     );
   }
 
+// ancienne version
+  // private isAuthenticated(): Subject<boolean> {
+  //   const formData = this.formLogin.value;
+  //   const isAuthenticatedSubject = new Subject<boolean>();
+  
+  //   this.authService.isMusicien(formData).subscribe((response: any) => {
+  //     console.log('Utilisateur authentifié avec succès', response);
+  //     this.currentMusicienId = response.musicienId;
+  
+  //     if (this.currentMusicienId) {
+  //       this.getMusicienInfos().subscribe(() => {
+  //         isAuthenticatedSubject.next(true);
+  //       });
+  //       this.authService.createAuth(this.musicien).subscribe(() => {
+  //         console.log("Subject créé avec succès !");
+  //       });
+  //     } else {
+  //       isAuthenticatedSubject.next(true);
+  //     }
+  //   }, (error) => {
+  //     console.error('Problème utilisateur ou mot de passe', error);
+  //     isAuthenticatedSubject.next(false);
+  //   });
+  
+  //   return isAuthenticatedSubject;
+  // }
 }

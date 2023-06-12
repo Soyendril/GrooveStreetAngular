@@ -21,9 +21,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private musicienSub!: Subscription;
   isAuthenticated = false;
 
+    // Initialiser à 2 pour la page de liste de profils
+
+    buttons = [
+      { id: 1, image1: 'assets/img/ppwht.png', image2: 'assets/img/ppgrn.png', routerLink: '/home' },
+      { id: 2, image1: 'assets/img/lgwht2.png', image2: 'assets/img/logo_vert.png', routerLink: '/Profile/1' },
+      { id: 3, image1: 'assets/img/chatwht.png', image2: 'assets/img/chatgreen.png', routerLink: '/grooves' }
+    ];
+
   constructor(private router: Router,
     private authService: AuthService) {
-    this.isOnSwipe = this.router.url === 'Grooves/:id';
+    this.isOnSwipe = this.router.url === 'grooves/:id';
     // Vérifier le routerLink actif
     for (const button of this.buttons) {
       if (button.routerLink === this.router.url) {
@@ -35,35 +43,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    // necessaire pour l'identifiant
-    const port = window.location.port;
-    const cookieId = `id_${port}`;
+    
 
-    // inscription du musicien
-    this.musicienSub = this.authService.musicien.subscribe(musicien =>{
-      this.isAuthenticated = !! musicien;
-
-    });
-
-    // met a jour la liste des discussions
-    // recupere l'id
-    this.musicienId = this.authService.getCookie(cookieId);
-    // recupere le pseudo
-    this.getpseudo();
   }
 
   ngOnDestroy(): void {
-      this.musicienSub.unsubscribe();
+      
   }
-  // Initialiser à 2 pour la page de liste de profils
-
-  buttons = [
-    { id: 1, image1: 'assets/img/ppwht.png', image2: 'assets/img/ppgrn.png', routerLink: '/home' },
-    { id: 2, image1: 'assets/img/lgwht2.png', image2: 'assets/img/logo_vert.png', routerLink: '/Profile/1' },
-    { id: 3, image1: 'assets/img/chatwht.png', image2: 'assets/img/chatgreen.png', routerLink: '/Grooves' }
-  ];
-
-
 
   toggleButton(buttonId: number): void {
     this.selectedButton = buttonId;

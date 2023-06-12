@@ -1,3 +1,5 @@
-<app-navbar *ngIf="isAuthenticated"></app-navbar>
-<div id="nav-vide" *ngIf="!isAuthenticated"></div>
-<router-outlet></router-outlet>
+<div id="homeCentral" [ngClass]="{'avecBg': !isLoggedIn}">
+    <app-navbar *ngIf="isLoggedIn"></app-navbar>
+    <div id="nav-vide" *ngIf="!isLoggedIn"></div>
+    <router-outlet></router-outlet>
+</div>

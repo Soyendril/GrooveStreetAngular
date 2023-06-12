@@ -1,6 +1,49 @@
-#contain-messagaes{
-    margin: 20px;
-    padding: 20px;
+#liste-contacts{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 30px;
+    position: absolute;
+    top: 140px;
+    background-color: #333333;
+}
+
+#contain-messages{
+    width: 100%;
+}
+
+#contain-texte{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.img-logo{
+    width: 20%;
+}
+.img-logo img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+#contain-bloc-message{
+    width: 70%;
+}
+
+#texte-message{
+    width: 100%;
+    text-transform: capitalize;
+}
+
+h2{
+    font-size: 1.6rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+button{
+    width: 100%;
 }
 
 a{

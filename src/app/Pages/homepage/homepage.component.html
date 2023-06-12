@@ -1,26 +1,15 @@
 <div id="accueil">
-    <p>hey ! {{pseudoMusicien}}</p>
+    <p>hey ! </p>
     <h1> Qui sommes nous?</h1>
     <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
-    <h3>Notre objectif</h3>
+    <h3>Notre objectif :</h3>
     <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
-    <div *ngIf="!isAuthenticated">
-        <button routerLink="/login">Connexion</button>
-        <button routerLink="/register">Inscription</button>
+    <p>Vous devez devenir membre pour bénéficier de nos services</p>
+    <div *ngIf="!isLoggedIn">
+        <button routerLink="/login" class="btnOne">Connexion</button>
+        <button routerLink="/register" class="btnOne">Inscription</button>
     </div>
-    <div *ngIf="isAuthenticated">   
-        <div class="shadow">
-            <img src="/assets/img/settings.png" alt="settings">
-        </div>
-        <div class="shadow">
-            <img src="/assets/img/logocamera.png" alt="add picture">
-        </div>
-        <div class="shadow">
-            <img src="/assets/img/edit.png" alt="edit profile">
-        </div>
-        <div class="logout-container">
-            <button class="logout" (click)="logout()">Déconnexion</button>
-        </div>
-
+    <div *ngIf="isLoggedIn">
+        <button (click)="logout()">Se déconnecter</button>
     </div>
 </div>

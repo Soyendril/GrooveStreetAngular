@@ -2,7 +2,6 @@
 <div class="container">
   <div id="content-messages">
     <ul>
-      <!-- <li *ngFor="let m of messages">{{m | json}}</li> -->
       <li *ngFor="let message of messages">{{ message }}</li>
     </ul>
     <form [formGroup]="form" (ngSubmit)="sendMessage()">

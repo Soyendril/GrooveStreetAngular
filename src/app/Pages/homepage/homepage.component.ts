@@ -9,22 +9,9 @@ import Musicien from '../model/musicien.model';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  
-  musicien: Musicien ={
-    id: null,
-    nom: '',
-    pseudo: '',
-    password: '',
-    email:'',
-    style : '',
-    description: '',
-    photo: '',
-    codePostal: '',
-    age: undefined
-    
-  };
-  pseudoMusicien?: string;
+
   isAuthenticated:boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -38,8 +25,6 @@ export class HomepageComponent implements OnInit {
    */
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isLoggedIn();
-  this._musicienService.getMusicienByPseudo().subscribe((pseudo)=> {
-    this.pseudoMusicien=pseudo;}, (error) => {console.log(error);}); 
   }
 
   
@@ -48,7 +33,7 @@ export class HomepageComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
-    this.isAuthenticated = false;
+    this.isLoggedIn = false;
   }
 
   get musicienService(): MusicienService {

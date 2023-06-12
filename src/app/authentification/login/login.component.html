@@ -1,23 +1,26 @@
 <div id="contain-login">
-
-<h1 class="text-3xl text-black mb-6 text-center mb-8">Se connecter</h1>
-<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-        <label for="email" class="label">Adresse email</label>
-        <input id="email" type="email" name="email" formControlName="email" placeholder="Votre adresse email">
+    <div class="img-logo">
+        <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
     </div>
 
-    <div class="mb-4">
-        <label for="password" class="label">Mot de passe</label>
-        <input id="password" type="password" name="password" formControlName="password"
-            placeholder="Votre mot de passe">
-    </div>
+    <h1>Devenir membre</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <div *ngIf="errorsAuth" class="erreur">Erreur dans l'adresse email ou le password</div>
+        <div class="mb-4">
+            <label for="email" class="label">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input id="email" type="email" name="email" formControlName="email" placeholder="Votre adresse email">
+        </div>
 
-    <button type="submit" class="btn w-full">Se connecter</button>
-</form>
+        <div class="mb-4">
+            <label for="password" class="label">Password :</label>
+            <input id="password" type="password" name="password" formControlName="password"
+                placeholder="Votre mot de passe">
+        </div>
 
-<div class="h-32">
-    <div><a routerLink="/register">S'inscrire</a></div>
-</div>
-<h3 *ngIf="errorsAuth">Erreur dans l'adresse email ou le password</h3>
+        <div id="form-buttons">
+            <button type="submit" class="btnOne btnLarge">Se connecter</button>
+            <button routerLink="/register" class="btnOne btnLarge">S'inscrire</button>
+        </div>
+    </form>
+
 </div>

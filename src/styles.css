@@ -1,23 +1,90 @@
 /* Style commun au site */
-:root{
+:root {
     --color-black: #333333;
     --color-white: #F5F5F5;
     --color-green: #0FA47A;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style: none;
 }
-body{
+
+body {
     background-color: #333333;
     width: 100vw;
     min-height: 100vh;
+    font-size: 16px;
 }
+
+/* classe commune aux boutons */
+.btnOne {
+    margin: 10px;
+    width: 34%;
+    height: auto;
+    padding: 4px;
+    border-radius: 10px;
+    border: none;
+    background-color: #0FA47A;
+    transition: ease-in-out;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.btnOne:hover {
+    background-color: #f5f5f5;
+    color: #333333;
+    transition: ease-in-out;
+}
+
+.btnLarge {
+    width: 50%;
+}
+
+input {
+    margin: 10px;
+    width: 200px;
+    height: 30px;
+    background-color: #0FA47A;
+    color: #fff;
+    border: none;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input,
+label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+  }
+
+  .erreur{
+    margin: 20px auto;
+    color: red;
+    font-weight: bold;
+    width: 90%;
+    font-size: 1.2rem;
+  }
+
+  /** gestion des liens */
+
+  
 /*Styles spécifiques pour les grands écrans type écrans d'ordinateur*/
-@media screen and (min-width: 980px){
-    body{
+@media screen and (min-width: 980px) {
+    body {
         /* background-image: url("/images/still-g0d20f0db7_640.jpg"); */
         background-size: cover;
     }
