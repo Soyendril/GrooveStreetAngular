@@ -1,14 +1,25 @@
 <div id="liste-contacts">
   <h2>Your Grooves</h2>
-<div id="contain-messagaes">
-    <div *ngFor="let musicien of messages">
-      <div class="img-logo">
-        <img [src]="cheminPhotos + musicien.photo" id="logosite" alt="Groove Street">
+  <div id="contain-messages">
+    <div *ngFor="let message of messages">
+      <a [routerLink]="['/messages', message.id]">
+        <div id="contain-texte">
+          <div class="img-logo">
+            <img [src]="cheminPhotos + message.photo" id="logosite" alt="Groove Street">
+          </div>
+          <div id="contain-bloc-message">
+            <div id="texte-message">
+              {{ message.nom }}
+            </div>
+            <div id="texte-message">
+              {{ message.message }}
+            </div>
+            <div id="texte-date">
+              Il y a {{ message.tempsDepuis }}
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
-
-        <a [routerLink]="['/messages', musicien.id]" class="btnOne btnLarge">
-          Conversation avec {{ musicien.nom }}
-        </a>
-      </div>
-</div>
+  </div>
 </div>

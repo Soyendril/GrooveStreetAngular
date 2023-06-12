@@ -160,7 +160,7 @@ export class AuthService {
    * @returns 
    */
     public autoLogin() {
-      console.log("auto")
+      console.log("autoLogin")
       const musicienData: {
         id: string;
         nom: string;

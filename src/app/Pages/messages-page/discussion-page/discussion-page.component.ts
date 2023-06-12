@@ -30,9 +30,6 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
   lastUserMessage: any = '';
   musicien!: Musicien;
 
-  // creation du nom de cookie par rapport au port du localhost de l'application utilisée
-  cookieId: string;
-
   @Input()
   musicien2_id: string = '';
   private disconnect$ = new Subject();
@@ -45,8 +42,6 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     private chatservice: ChatService,
     private datePipe: DatePipe) {
     this.connect();
-    const port = window.location.port;  // recupere le port du localhost
-    this.cookieId = `id_${port}`;       // nomme la variable cookieId en id_42xx
   }
 
   ngOnInit() {

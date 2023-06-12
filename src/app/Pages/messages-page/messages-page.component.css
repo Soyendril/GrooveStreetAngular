@@ -5,14 +5,34 @@
     padding: 30px;
     position: absolute;
     top: 140px;
+    background-color: #333333;
 }
 
-#contain-messagaes{
+#contain-messages{
     width: 100%;
-    margin: 20px;
-    padding: 20px;
+}
+
+#contain-texte{
     display: flex;
-    background-color: #333333;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.img-logo{
+    width: 20%;
+}
+.img-logo img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+#contain-bloc-message{
+    width: 70%;
+}
+
+#texte-message{
+    width: 100%;
+    text-transform: capitalize;
 }
 
 h2{
@@ -27,15 +47,4 @@ button{
 
 a{
     color: #fff;
-}
-
-.img-logo{
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.img-logo img{
-    width: 30%;
-    height: auto;
 }

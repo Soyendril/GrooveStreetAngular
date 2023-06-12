@@ -1,4 +1,4 @@
-<div id="homeCentral">
+<div id="homeCentral" [ngClass]="{'avecBg': !isLoggedIn}">
     <app-navbar *ngIf="isLoggedIn"></app-navbar>
     <div id="nav-vide" *ngIf="!isLoggedIn"></div>
     <router-outlet></router-outlet>
