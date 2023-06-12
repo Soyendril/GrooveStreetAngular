@@ -51,9 +51,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       
   }
 
-
-
-
   toggleButton(buttonId: number): void {
     this.selectedButton = buttonId;
   }

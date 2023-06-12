@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, switchMap, EMPTY } from 'rxjs';
+import { Observable, BehaviorSubject, switchMap, EMPTY, map } from 'rxjs';
 import Musicien from '../model/musicien.model';
 
 
@@ -17,10 +17,8 @@ export class MusicienService {
   private selectedMusicienIds: number[] = [];
   musiciensEpuises$ = new BehaviorSubject<boolean>(false);
 
-
   constructor(private http: HttpClient) { }
-
-  /*
+  /**
     On reprend Musicien en observable
     On génère un index au hasard qu'on passe sur la liste des IDs
     On obtient un ID qu'on passe à la fonction getMusicienById
@@ -74,4 +72,9 @@ export class MusicienService {
   getMusicienById(id: number): Observable<Musicien> {
     return this.http.get<Musicien>(`${this.baseUrl}/${id}`);
   }
+
+  getMusicienByPseudo(): Observable <string> {
+    return this.http.get<any>(`${this.baseUrl}/`).pipe(
+    map(response =>response.pseudo)
+  );}
 }

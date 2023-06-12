@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/authentification/services/auth.service';
-
+import { MusicienService } from '../Services/musicien.service';
+import Musicien from '../model/musicien.model';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,12 +10,12 @@ import { AuthService } from 'src/app/authentification/services/auth.service';
 })
 export class HomepageComponent implements OnInit {
 
-    // id subscription
-    isLoggedIn: boolean = false;
-    private loggedInSubscription!: Subscription;
+  isAuthenticated:boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private _musicienService: MusicienService
   ) { }
 
   /**
@@ -23,11 +24,7 @@ export class HomepageComponent implements OnInit {
    * ou le bouton de déconnexion
    */
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-
-    this.loggedInSubscription = this.authService.getLoggedInSubject().subscribe((isLoggedIn: boolean) => {
-      this.isLoggedIn = isLoggedIn;
-    });
+    this.isAuthenticated = this.authService.isLoggedIn();
   }
 
   
@@ -37,5 +34,9 @@ export class HomepageComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;
+  }
+
+  get musicienService(): MusicienService {
+    return this._musicienService;
   }
 }
