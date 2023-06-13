@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { MusicienService } from '../Services/musicien.service';
 import Musicien from '../model/musicien.model';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -11,7 +12,6 @@ import Musicien from '../model/musicien.model';
 export class HomepageComponent implements OnInit {
 
   isAuthenticated:boolean = false;
-  isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -33,7 +33,7 @@ export class HomepageComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
-    this.isLoggedIn = false;
+    this.isAuthenticated = false;
   }
 
   get musicienService(): MusicienService {

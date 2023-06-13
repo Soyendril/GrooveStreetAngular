@@ -12,7 +12,7 @@ import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-co
 export class ProfilPersonnePageComponent implements OnInit {
 
   musicien: Musicien = {
-    id: null,
+    id: 454,
     nom: '',
     pseudo: '',
     email: '',

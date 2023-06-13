@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie';
 import Musicien from '../model/musicien.model';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -36,8 +37,6 @@ export class AuthService {
    */
   private port = window.location.port;
   private cookieMusicien = `musicien_${this.port}`;
-  private cookieId = `id_${this.port}`;
-  private cookieEmail = `email_${this.port}`;
 
   // permet aux composants de s'abonner à la valeur de islogged
   private isLoggedInSubject: Subject<boolean> = new Subject<boolean>();
@@ -66,6 +65,7 @@ export class AuthService {
     musicien.id = id;
     this.putCookie(this.cookieMusicien, JSON.stringify(musicien));
     this.setLoggedInStatus(true);
+    this.router.navigate(['home']);
     return this.musicien.asObservable(); // Renvoie un Observable de Musicien | null
   }
 
@@ -179,23 +179,6 @@ export class AuthService {
 
   ///////////
 
-
-
-  /**
-   * methode de deconnection
-   */
-  public logout22222(): void {
-    // Suppression des cookies
-    this.deleteCookie();
-    //    this.musicien = new Subject<Musicien>();
-    this.musicien.next(null);
-    console.log("logout");
-    // Après une déconnexion réussie :
-    // this.isLoggedInSubject.next(false);
-    // redirection en page d'acceuil
-    this.router.navigate(['home']);
-  }
-
   getUsers(): Observable<Musicien[]> {
     return this.http.get<Musicien[]>(this.apiUrl);
   }
@@ -242,30 +225,4 @@ export class AuthService {
     return this.http.get<Musicien>(url);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /**
- * Action a effectuer lorsque l'authentification est ok
- * mise en place des cookies
- * redirection vers page d'accueil
- * @param id 
- * @param email 
- */
-  public authenticateOk(id: string, email: string) {
-    this.putCookie(this.cookieId, (id));
-    this.putCookie(this.cookieEmail, email);
-    // redirection page d'accueil
-    // this.router.navigate(['home']);
-  }
 }

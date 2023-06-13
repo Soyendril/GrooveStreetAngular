@@ -1,4 +1,4 @@
- <div *ngIf="!(musicienService.profilConsulted$ | async); else elseBlock">
+  <div *ngIf="!(musicienService.profilConsulted$ | async); else elseBlock">
 
   <div *ngIf="!(musicienService.musiciensEpuises$ | async); else elseBlock" >
     <div id="contail-profil-personne" [ngStyle]="{ 'background-image': 'url(' + musicien.photo + ')'}">

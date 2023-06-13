@@ -4,6 +4,9 @@ constructor(
   public nom: string,
   public password: string,
   public email: string,
-  public pseudo: string
+  public pseudo: string,
+  public photo?: string,
+  public description?: string,
+  public style?: string
 ){}
   }
