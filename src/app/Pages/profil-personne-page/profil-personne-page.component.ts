@@ -42,6 +42,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+        console.log(this.musicien);
+
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
         this.musicienService.musiciensEpuises$.next(false);
         this.musicienService.profilConsulted$.next(false);

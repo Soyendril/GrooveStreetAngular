@@ -43,6 +43,7 @@ export class NavBoutonsBasComponent {
     this._musicienService.switchRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+        console.log(this.musicien);
         this.musicienCommunicationService.getNextMusicien(this.musicien); // Émet l'événement
         this.musicienService.profilConsulted$.next(false);
         this.musicienService.musiciensEpuises$.next(false);
