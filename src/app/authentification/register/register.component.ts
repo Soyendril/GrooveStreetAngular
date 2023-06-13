@@ -30,9 +30,14 @@ export class RegisterComponent {
   musicien: Musicien = {
     id: null,
     nom: '',
+    pseudo: '',
     email: '',
     password: '',
-    pseudo: ''
+    description: '',
+    style: '',
+    photo: '',
+    codePostal: '',
+    age: undefined
   };
 
   currentMusicienId: string | null = null;
@@ -60,7 +65,12 @@ export class RegisterComponent {
         nom: this.formMusicien.value.nom,
         email: this.formMusicien.value.email,
         password: this.formMusicien.value.password,
-        pseudo: this.formMusicien.value.nom
+        pseudo: this.formMusicien.value.nom,
+        style: this.formMusicien.value.style,
+        photo: this.formMusicien.value.photo,
+        codePostal: this.formMusicien.value.codePostal,
+        age: this.formMusicien.value.age,
+        description: this.formMusicien.value.description
       };
 
       // ajoute un nouvel utilisateur
