@@ -28,7 +28,7 @@ export class HomepageComponent implements OnInit {
   pseudoMusicien?: string;
 
   isAuthenticated:boolean = false;
-  isLoggedIn: boolean = false;
+  // isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -55,7 +55,7 @@ export class HomepageComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
-    this.isLoggedIn = false;
+    this.isAuthenticated = false;
   }
 
   get musicienService(): MusicienService {

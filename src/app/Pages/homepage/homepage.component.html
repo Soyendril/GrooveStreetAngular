@@ -6,7 +6,7 @@
   <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
   <p>Vous devez devenir membre pour bénéficier de nos services</p>
 
-  <div *ngIf="!isLoggedIn; else elseBlock">
+  <div *ngIf="!isAuthenticated; else elseBlock">
       <button routerLink="/login" class="btnOne">Connexion</button>
       <button routerLink="/register" class="btnOne">Inscription</button>
   </div>

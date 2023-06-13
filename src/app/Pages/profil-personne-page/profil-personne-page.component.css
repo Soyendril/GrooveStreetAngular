@@ -16,6 +16,7 @@ h1{
     text-align: center;
     margin: 50px 0 20px 0;
 }
+
 svg{
     width: 20px;
     height: 20px;
@@ -37,7 +38,15 @@ svg{
 }
 
 .shadow{
-    text-shadow: 2px 2px 0 var(--color-black), 2px -2px 0 var(--color-black), -2px 2px 0 var(--color-black), -2px -2px 0 var(--color-black), 2px 0px 0 var(--color-black), 0px 2px 0 var(--color-black), -2px 0px 0 var(--color-black), 0px -2px 0 var(--color-black);
+    text-shadow:
+    2px 2px 0 var(--color-black),
+    2px -2px 0 var(--color-black),
+    -2px 2px 0 var(--color-black),
+    -2px -2px 0 var(--color-black),
+    2px 0px 0 var(--color-black),
+    0px 2px 0 var(--color-black),
+    -2px 0px 0 var(--color-black),
+    0px -2px 0 var(--color-black);
 }
 
 #contain-bouton-bas{
