@@ -12,8 +12,17 @@
   </div>
 
   <ng-template #elseBlock>
-    <div >
-        <button (click)="logout()">Se déconnecter</button>
+    <div class="shadow">
+        <img src="/assets/img/settings.png" alt="settings">
+    </div>
+    <div class="shadow">
+        <img src="/assets/img/logocamera.png" alt="add picture">
+    </div>
+    <div class="shadow">
+        <img src="/assets/img/edit.png" alt="edit profile">
+    </div>
+    <div class="logout-container">
+        <button class="logout" (click)="logout()">Déconnexion</button>
     </div>
   </ng-template>
 </div>
