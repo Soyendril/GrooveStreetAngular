@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienService } from '../Services/musicien.service';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
 
@@ -12,7 +12,7 @@ import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-co
 export class ProfilPersonnePageComponent implements OnInit {
 
   musicien: Musicien = {
-    id: 454,
+    id: null,
     nom: '',
     pseudo: '',
     email: '',
@@ -42,6 +42,8 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
+        console.log(this.musicien);
+
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
         this.musicienService.musiciensEpuises$.next(false);
         this.musicienService.profilConsulted$.next(false);
