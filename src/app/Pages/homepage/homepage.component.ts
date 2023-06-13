@@ -26,7 +26,18 @@ export class HomepageComponent implements OnInit {
    */
   ngOnInit(): void {
     const userID = this.authService.getId();
+    console.log(userID);
     this.isAuthenticated = this.authService.isLoggedIn();
+
+    this._musicienService.getMusicienByPseudo(userID).subscribe(
+      (pseudo)=> {
+      this.pseudoMusicien=pseudo;
+      console.log("wesh : "+ pseudo);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
   }
 
@@ -42,3 +53,25 @@ export class HomepageComponent implements OnInit {
     return this._musicienService;
   }
 }
+
+// ngOnInit(): void {
+//   const userId = this.authService.getId();
+//   console.log("Teststtst : "+userId);
+//   this.isAuthenticated = this.authService.isLoggedIn();
+
+//   // this.authService.getUser().subscribe((musicien) => {
+//   //   if (musicien) {
+//   //     this.musicien = musicien;
+//   //   }
+//   // });
+
+//   this._musicienService.getMusicienByPseudo(userId).subscribe(
+//     (pseudo)=> {
+//     this.pseudoMusicien=pseudo;
+//     console.log("wesh : "+ pseudo);
+//     },
+//     (error) => {
+//       console.log(error);
+//     }
+//   );
+// }

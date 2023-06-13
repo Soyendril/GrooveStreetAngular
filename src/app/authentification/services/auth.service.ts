@@ -136,7 +136,7 @@ export class AuthService {
   }
 
   getId(){
-    this.getCookie(this.cookieMusicien);
+    return this.getCookie(this.cookieMusicien);
   }
 
   /**
