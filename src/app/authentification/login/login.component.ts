@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service'
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 
 import { Observable, Subject, Subscription, map} from 'rxjs';
 import { Router } from '@angular/router';
@@ -64,13 +64,13 @@ export class LoginComponent {
    * verfie avec le back si l'email et password sont corrects
    * connecte l'utilisateur si ok
    * sinon renvoie l'erreur
-   * @returns 
+   * @returns
    */
 
   private isAuthenticated(): Subject<boolean> {
     const formData = this.formLogin.value;
     const isAuthenticatedSubject = new Subject<boolean>();
-  
+
     this.authService.isMusicien(formData).subscribe((response: any) => {
       console.log('Utilisateur authentifié avec succès', response);
       this.currentMusicienId = response.id;
@@ -80,10 +80,10 @@ export class LoginComponent {
       console.error('Problème utilisateur ou mot de passe', error);
       isAuthenticatedSubject.next(false);
     });
-  
+
     return isAuthenticatedSubject;
   }
-  
+
 
 
   /**
@@ -105,11 +105,11 @@ export class LoginComponent {
   // private isAuthenticated(): Subject<boolean> {
   //   const formData = this.formLogin.value;
   //   const isAuthenticatedSubject = new Subject<boolean>();
-  
+
   //   this.authService.isMusicien(formData).subscribe((response: any) => {
   //     console.log('Utilisateur authentifié avec succès', response);
   //     this.currentMusicienId = response.musicienId;
-  
+
   //     if (this.currentMusicienId) {
   //       this.getMusicienInfos().subscribe(() => {
   //         isAuthenticatedSubject.next(true);
@@ -124,7 +124,7 @@ export class LoginComponent {
   //     console.error('Problème utilisateur ou mot de passe', error);
   //     isAuthenticatedSubject.next(false);
   //   });
-  
+
   //   return isAuthenticatedSubject;
   // }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, switchMap, EMPTY, map } from 'rxjs';
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 
 
 @Injectable({
@@ -74,7 +74,7 @@ export class MusicienService {
   }
 
   getMusicienByPseudo(): Observable <string> {
-    return this.http.get<any>(`${this.baseUrl}/`).pipe(
+    return this.http.get<Musicien>(`${this.baseUrl}/`).pipe(
     map(response =>response.pseudo)
   );}
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 
 @Injectable({
   providedIn: 'root'

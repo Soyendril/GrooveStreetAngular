@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienService } from '../Services/musicien.service';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
 

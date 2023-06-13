@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, catchError, tap, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
-import Musicien from '../model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 export interface AuthResponseData {
@@ -49,8 +49,8 @@ export class AuthService {
 
   /**
     * creation du musicien
-    * @param musicien 
-    * @returns 
+    * @param musicien
+    * @returns
     */
   addMusicien(musicien: Musicien): Observable<Musicien> {
     return this.http.post<Musicien>(this.apiUrl, musicien);
@@ -59,7 +59,7 @@ export class AuthService {
   /**
    * Action a effectuer lorsque l'authentification est ok
    * permet de créer l'écoute du musicien pour les valeurs de connexion/déconnexion
-   * @param musicien 
+   * @param musicien
    */
   public createAuth(id: string | null, musicien: Musicien): Observable<Musicien | null> {
     // recupere l'id
@@ -105,19 +105,19 @@ export class AuthService {
   /**
    * methode pour tester si utiliateur connecté
    * teste juste si le cookie est renseigné
-   * @returns 
+   * @returns
    */
   public isLoggedIn(): boolean {
     // teste si deux cookies sont présents
     if(this.getCookie(this.cookieMusicien) != "0"){
-      return true;  
+      return true;
     }
     return false;
   }
 
   /**
    * retourne la valeur de isLogin pour tester la connexion
-   * @returns 
+   * @returns
    */
   public getLoggedInSubject(): Observable<boolean> {
     return this.isLoggedInSubject.asObservable();
@@ -128,11 +128,15 @@ export class AuthService {
 
   /**
    * permet de récuperer un cookie
-   * @param key 
-   * @returns 
+   * @param key
+   * @returns
    */
   getCookie(key: string) {
     return this.cookieService.get(key) || "0";
+  }
+
+  getId(){
+    this.getCookie(this.cookieMusicien);
   }
 
   /**
@@ -157,24 +161,41 @@ export class AuthService {
     /**
    * connecte automatiquement un utilisateur inscrit
    * utile pour revenir sur l'appli
-   * @returns 
+   * @returns
    */
     public autoLogin() {
-      console.log("autoLogin")
       const musicienData: {
-        id: string;
+        id: string | null;
         nom: string;
         password: string;
         email: string;
         pseudo: string;
+        style: string;
+        description: string;
+        photo: string;
+        codePostal?: string;
+        age?: string | undefined;
       } = JSON.parse(this.getCookie(this.cookieMusicien));
+
       if (!musicienData) {
-        return
+        return;
       }
-      const loadedMusicien = new Musicien(
-        musicienData.id, musicienData.nom, musicienData.password, musicienData.email, musicienData.pseudo
-      );
+
+      const loadedMusicien: Musicien = {
+        id: musicienData.id,
+        nom: musicienData.nom,
+        password: musicienData.password,
+        email: musicienData.email,
+        pseudo: musicienData.pseudo,
+        description: musicienData.description,
+        style: musicienData.style,
+        photo: musicienData.photo,
+        codePostal: musicienData.codePostal,
+        age: musicienData.age ? parseInt(musicienData.age) : undefined,
+      };
+
       this.musicien.next(loadedMusicien);
+      console.log("object: ", this.musicien);
     }
 
   ///////////
@@ -204,8 +225,8 @@ export class AuthService {
 
   /**
    * Mise à jour d'un musicien
-   * @param musicien 
-   * @returns 
+   * @param musicien
+   * @returns
    */
   updateUser(musicien: Musicien): Observable<Musicien> {
     const url = `${this.apiUrl}/${musicien.id}`;
@@ -213,9 +234,9 @@ export class AuthService {
   }
 
   /**
-   * 
+   *
    * @param musicenId Supperssion d'un musicien
-   * @returns 
+   * @returns
    */
   deleteUser(musicenId: number | null): Observable<unknown> {
     const url = `${this.apiUrl}/${musicenId}`;
@@ -224,7 +245,7 @@ export class AuthService {
 
   /**
  * recupere un musicien avec ses infos : nom, email, pseudo, password depuis son id
- * @returns 
+ * @returns
  */
   getMusicienInfos(id: string): Observable<Musicien> {
     const url = `${this.apiUrl}/auth/${id}`;
@@ -235,7 +256,7 @@ export class AuthService {
 
   /**
    * recupere le pseudo de l'utilisateur par rapport à l'id
-   * @returns 
+   * @returns
    */
   getUser(id: string): Observable<Musicien> {
     const url = `${this.apiUrl}/pseudo/${id}`;
@@ -244,23 +265,12 @@ export class AuthService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   /**
  * Action a effectuer lorsque l'authentification est ok
  * mise en place des cookies
  * redirection vers page d'accueil
- * @param id 
- * @param email 
+ * @param id
+ * @param email
  */
   public authenticateOk(id: string, email: string) {
     this.putCookie(this.cookieId, (id));

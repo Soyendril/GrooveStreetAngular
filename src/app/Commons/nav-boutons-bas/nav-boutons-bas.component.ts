@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MusicienService } from 'src/app/Pages/Services/musicien.service';
-import Musicien from 'src/app/Pages/model/musicien.model';
+import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
 
 @Component({
