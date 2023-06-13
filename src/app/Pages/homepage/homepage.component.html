@@ -1,15 +1,19 @@
 <div id="accueil">
-    <p>hey ! </p>
-    <h1> Qui sommes nous?</h1>
-    <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
-    <h3>Notre objectif :</h3>
-    <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
-    <p>Vous devez devenir membre pour bénéficier de nos services</p>
-    <div *ngIf="!isLoggedIn">
-        <button routerLink="/login" class="btnOne">Connexion</button>
-        <button routerLink="/register" class="btnOne">Inscription</button>
-    </div>
-    <div *ngIf="isLoggedIn">
+  <p>Hello {{ pseudoMusicien }} ! </p>
+  <h1> Qui sommes nous?</h1>
+  <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
+  <h3>Notre objectif :</h3>
+  <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
+  <p>Vous devez devenir membre pour bénéficier de nos services</p>
+
+  <div *ngIf="!isLoggedIn; else elseBlock">
+      <button routerLink="/login" class="btnOne">Connexion</button>
+      <button routerLink="/register" class="btnOne">Inscription</button>
+  </div>
+
+  <ng-template #elseBlock>
+    <div >
         <button (click)="logout()">Se déconnecter</button>
     </div>
+  </ng-template>
 </div>

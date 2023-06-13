@@ -72,14 +72,4 @@ export class MusicienService {
   getMusicienById(id: number): Observable<Musicien> {
     return this.http.get<Musicien>(`${this.baseUrl}/${id}`);
   }
-
-  // getMusicienByPseudo(): Observable <string> {
-  //   return this.http.get<Musicien>(`${this.baseUrl}/`).pipe(
-  //   map(response =>response.pseudo)
-  // );}
-
-  getMusicienByPseudo(id : string | undefined): Observable <string> {
-    return this.http.get<Musicien>(`${this.baseUrl}/${id}`).pipe(
-    map(musicien => musicien.pseudo)
-  );}
 }
