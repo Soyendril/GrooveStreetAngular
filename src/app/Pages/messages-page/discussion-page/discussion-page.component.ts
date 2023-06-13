@@ -29,10 +29,11 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
   })
 
   conversations: Conversation[] = [];
-  conversations$!: Observable<Conversation[]>;
+  // conversations$!: Observable<Conversation[]>;
 
   lastUserMessage: any = '';
   musicien!: Musicien;
+  photo: string = "default.png";
 
   @Input()
   musicien2_id: string = '';
@@ -60,6 +61,9 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
       this.authService.getMusicien().subscribe((musicien) => {
         if (musicien) {
           this.musicien = musicien;
+          if(musicien.photo !== undefined) {
+            this.photo = musicien.photo;
+          }          
         }
       });
       // On récupère la partie 'type' de l'URL
@@ -71,13 +75,14 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
        * envoi les messages et les recupere
        * 
        * A faire => gestion de l'id
+       * 
+       * A faire => ajouter la photo suivant id1 et id2
        */
       if (this.musicien.id) {
         this.chatservice.subscribeToTopic(this.musicien.id).subscribe((message) => {
           const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
-          // this.conversations.push(message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
-          
-          console.log("message : " + parsedMessage.message)
+          parsedMessage.photo = this.musicien.photo;
+          this.conversations.push(parsedMessage); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
         });
       }
 

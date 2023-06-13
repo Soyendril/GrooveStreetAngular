@@ -1,3 +1,6 @@
+#contain-discussion-prive{
+    height: 100%;
+}
 #content-messages{
     border: 1px solid;
     width: 100%;
@@ -18,6 +21,10 @@ input{
     height: 50px;
     width: 200px;
 }
+.defil-messages{
+    display: flex;
+}
+
 /* classe quand sender*/
 
 li{
@@ -29,20 +36,24 @@ li{
     display: flex;
 }
 .sender{
-    border-radius: 10px;    
-    margin: 10px 0;
-    margin: 0;
-    background-color: lightslategray;
-    padding: 10px;
+    
 }
 
 /* classe quand reciever*/
 .reciever{
-
+    background-color: #0FA47A;
 }
 
+#texte-conversation{
+    border-radius: 10px;    
+    margin: 10px 0;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+}
 .img-logo{
-    width: 20%;
+    width: 14%;
+    margin-right: 10px;
 }
 .img-logo img{
     width: 100%;

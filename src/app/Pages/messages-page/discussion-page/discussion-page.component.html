@@ -1,12 +1,14 @@
-<h1>Discussion</h1>
+<div id="contain-discussion-prive">
 <div class="container">
   <div id="content-messages">
       <li *ngFor="let conversation of conversations">
-        <div class="img-logo">
-          <img [src]="cheminPhotos + conversation.photo" id="logosite" alt="Groove Street">
-        </div>
-        <div class="sender">
-          {{ conversation.message }}
+        <div class="defil-messages">
+          <div class="img-logo">
+            <img [src]="cheminPhotos + conversation.photo" id="logosite" alt="Groove Street">
+          </div>
+          <div id="texte-conversation sender">
+            {{ conversation.message }}
+          </div>
         </div>
       </li>
     <form [formGroup]="form" (ngSubmit)="sendMessage()">
@@ -14,4 +16,5 @@
       <button type="submit">></button>
     </form>
   </div>
+</div>
 </div>
