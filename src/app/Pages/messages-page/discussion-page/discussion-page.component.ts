@@ -2,12 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ConversationService } from '../service/conversation.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { ChatService } from '../service/chat.service';
 import { DatePipe } from '@angular/common';
 import Musicien from 'src/app/authentification/model/musicien.model';
+import Conversation from '../models/conversation.model';
 
 
 @Component({
@@ -18,6 +19,7 @@ import Musicien from 'src/app/authentification/model/musicien.model';
 export class DiscussionPageComponent implements OnDestroy, OnInit {
   currentDate: Date = new Date();
   formattedDateTime = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
+  cheminPhotos: string = "./assets/img/avatars/";
 
   form = new FormGroup({
     'musicien1_id': new FormControl(""),
@@ -26,9 +28,12 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     'date': new FormControl()
   })
 
-  messages: any[] = [];
+  conversations: Conversation[] = [];
+  // conversations$!: Observable<Conversation[]>;
+
   lastUserMessage: any = '';
   musicien!: Musicien;
+  photo: string = "default.png";
 
   @Input()
   musicien2_id: string = '';
@@ -56,6 +61,9 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
       this.authService.getMusicien().subscribe((musicien) => {
         if (musicien) {
           this.musicien = musicien;
+          if(musicien.photo !== undefined) {
+            this.photo = musicien.photo;
+          }          
         }
       });
       // On récupère la partie 'type' de l'URL
@@ -67,14 +75,16 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
        * envoi les messages et les recupere
        * 
        * A faire => gestion de l'id
+       * 
+       * A faire => ajouter la photo suivant id1 et id2
        */
-      if(this.musicien.id){
+      if (this.musicien.id) {
         this.chatservice.subscribeToTopic(this.musicien.id).subscribe((message) => {
           const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
-          this.messages.push(parsedMessage.message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
+          parsedMessage.photo = this.musicien.photo;
+          this.conversations.push(parsedMessage); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
         });
       }
-      
 
       // met a jour le formulaire avec les bonnes id
       this.ajoutFormId(musicien2_id);
@@ -89,7 +99,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
     this.chatservice.notify
       .pipe(takeUntil(this.disconnect$))
       .subscribe((msg: any) => {
-        this.messages.push(msg);
+        this.conversations.push(msg);
       })
 
     this.chatservice.newMessage
@@ -142,19 +152,40 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
    */
 
   private getMessageConversation(musicien2_id: string): void {
-    if(this.musicien.id){
+    if (this.musicien.id) {
       this.conversationService.getConversationsByIdUnique(this.musicien.id, musicien2_id)
-      .pipe(
-        map(conversations => conversations.map(conversation => conversation.message))
-      )
-      .subscribe(messages => this.messages = messages);
+        .pipe(
+          map((data: any[]) => {
+            return data.map(item => {
+              return {
+                id: item.id,
+                message: item.message,
+                musicien1_id: item.musicien1_id,
+                musicien2_id: item.musicien2_id,
+                date: new Date(item.date),
+                photo: item.photo
+              };
+            });
+          })
+        )
+        .subscribe({
+          next: (conversations: Conversation[]) => {
+            this.conversations = conversations;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => {
+          }
+        });
     }
   }
+  //
 
   /**
    * ajoute les id utilisateur et receveur au formulaire
    */
-  
+
   ajoutFormId(musicien2_id: string): void {
     this.form.patchValue({
       'musicien1_id': this.musicien.id,
