@@ -1,13 +1,13 @@
-<h1>Discussion</h1>
 <div class="container">
   <div id="content-messages">
-    <ul>
-      <li *ngFor="let message of messages">{{ message }}</li>
-    </ul>
+    <div id="ligne-message">
+        <!-- <div class="img-logo" [style.backgroundImage]="'url(' + message.photo + ')'"></div> -->
+        <li *ngFor="let message of messages">{{ message }}</li>
+    </div>
     <form [formGroup]="form" (ngSubmit)="sendMessage()">
       <input type="text" formControlName="message">
       <button type="submit">></button>
     </form>
   </div>
-  
+
 </div>

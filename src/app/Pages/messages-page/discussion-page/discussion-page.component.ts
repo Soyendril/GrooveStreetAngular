@@ -72,6 +72,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
         this.chatservice.subscribeToTopic(this.musicien.id).subscribe((message) => {
           const parsedMessage = JSON.parse(message.body); // Conversion de la chaîne JSON en objet JavaScript
           this.messages.push(parsedMessage.message); // Ajout de l'objet dans le tableau messages - recupere uniquement le message
+          console.log("photo : " + parsedMessage.message.photo);
         });
       }
       

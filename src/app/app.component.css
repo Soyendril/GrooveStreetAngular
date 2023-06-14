@@ -12,6 +12,9 @@
 
 .avecBg{
     background-image: url("src\assets\img\fondsAccueil.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 
