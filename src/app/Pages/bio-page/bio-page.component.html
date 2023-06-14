@@ -1,7 +1,15 @@
-    <h1>Hello!</h1>
-    <img src="path_to_image" alt="Photo de profil" class="profile-pic">
-    <div class="profile-buttons">
-        <button class="roue"></button>
-        <button class="pb-camera"></button>
-        <button class="edit"></button>
-    </div>
+<h2>à propos de {{pseudoMusicien}}</h2>
+<div class="container">
+    <form action="traitement.php" method="post">
+      <label for="instruments">Tes instruments :</label>
+      <input type="text" name="instruments" id="instruments" required>
+      <br><br>
+      <label for="recherche">Ce que tu recherches :</label>
+      <input type="text" name="recherche" id="recherche" required>
+      <br><br>
+      <label for="qui">Qui es-tu :</label>
+      <input type="text" name="qui" id="qui" required>
+      <br><br>
+      <input type="submit" value="Sauvegarder">
+    </form>
+  </div>

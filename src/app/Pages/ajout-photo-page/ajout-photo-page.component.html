@@ -1,1 +1,17 @@
-<p>ajout-photo-page works!</p>
+<h2>Modification de ta photo {{pseudoMusicien}}:</h2>
+<div class="hello-photo" [ngStyle]="{ 'background-image': 'url(' + photoMusicien + ')'}"></div>
+<div class="container">
+    <div class="form-container">
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <label class="selection" for="fileUpload">Sélectionnez une image :</label>
+        <br /><br />
+        <input type="file" name="fileUpload" id="fileUpload" accept=".jpg, .jpeg, .png">
+        <br><br>
+        <input type="submit" value="Envoyer">
+      </form>
+      <input routerLink="/home" value="Retour à l'accueil">
+    </div>
+    
+</div>
+
+
