@@ -1,20 +1,33 @@
 #contail-profil-personne {
-    width: 100%;
-    /*height: calc(100vh - 240px);*/
-    height: 100vh;
-    color: var(--color-white);
-    margin: 0;
-    padding: 400px 40px 40px 40px;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  width: 100%;
+  /*height: calc(100vh - 240px);*/
+  height: 100vh;
+  color: var(--color-white);
+  margin: 0;
+  padding: 400px 40px 40px 40px;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
+
+
 h1{
-    text-align: center;
-    margin: 50px 0 20px 0;
+  text-align: center;
+  margin: 50px 0 20px 0;
+  font-size: 2.4em;
+  text-shadow:
+  1px 1px 0 #0FA47A,
+  1px -1px 0 #0FA47A,
+  -1px 1px 0 #0FA47A,
+  -1px -1px 0 #0FA47A,
+  1px 0px 0 #0FA47A,
+  0px 1px 0 #0FA47A,
+  -1px 0px 0 #0FA47A,
+  0px -1px 0 #0FA47A;
+  margin-bottom: 16px;
 }
 
 svg{
@@ -30,11 +43,20 @@ svg{
     padding-right: 10px;
 }
 
-.p-vert{
-    background-color: #0fa47ac3;
+.p-line {
+    background-color: #0fa47add;
     margin: 20px 0;
     padding: 10px;
     border-radius: 10px;
+    font-style: italic;
+    font-size: large;
+}
+
+.p-vert{
+  background-color: #0fa47add;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .shadow{
@@ -68,16 +90,21 @@ svg{
   justify-content: center;
   width: 300px;
   height: 200px;
-  background-color: #ffffff;
+  background-color:#262626;
+  color: white;
   border-radius: 10px;
   border: solid;
+  border-color: #0b8865;
   box-shadow: 0 4px 24px rgba(12, 12, 12, 12);
   padding: 20px;
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+#contail-profil-personne2 button{
+  margin-top: 30px;
+}
+
+h2{
+  font-size: 1.6em;
 }
 
 button {
