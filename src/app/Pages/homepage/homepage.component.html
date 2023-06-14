@@ -2,9 +2,9 @@
   <div *ngIf="!isAuthenticated; else elseBlock">
 
     <img class="hello-logo" src="assets/img/logosite.png" alt="GROOVESTREET">
-    <h1> Qui sommes nous?</h1>
+    <h1 class="hi"> Qui sommes nous?</h1>
     <p>Delphine, Souleymane & Titouan: Developpeurs Full Stack</p>
-    <h3>Notre objectif :</h3>
+    <h1>Notre objectif :</h1>
     <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
     <p>Vous devez devenir membre pour bénéficier de nos services</p>
 
@@ -16,21 +16,21 @@
 <ng-template #elseBlock>
     <div >
       <div>
-        <p>Hello {{ pseudoMusicien }} ! </p>
+        <h1 class="hi">Hello {{ pseudoMusicien }} ! </h1>
         <div class="hello-photo" [ngStyle]="{ 'background-image': 'url(' + photoMusicien + ')'}"></div>
       </div>
 
     <div class="shadow">
         <img src="/assets/img/settings.png" alt="settings" routerLink="/Settings">
     </div>
-    <div class="shadow">
+    <div class="shadow v-image">
         <img src="/assets/img/logocamera.png" alt="add picture" routerLink="/Bio/EditPhoto">
     </div>
     <div class="shadow">
         <img src="/assets/img/edit.png" alt="edit profile" routerLink="/Bio">
     </div>
     <div class="logout-container">
-        <button class="logout" (click)="logout()">Déconnexion</button>
+        <button id="logout" (click)="logout()">Déconnexion</button>
     </div>
 </div>
 </ng-template>
