@@ -27,6 +27,7 @@ export class HomepageComponent implements OnInit {
   };
 
   pseudoMusicien?: string;
+  photoMusicien?: string;
 
   isAuthenticated:boolean = false;
   // isLoggedIn: boolean = false;
@@ -42,12 +43,15 @@ export class HomepageComponent implements OnInit {
    * ou le bouton de déconnexion
    */
   ngOnInit(): void {
+    this.authService.autoLogin();
     const userID = this.authService.getId();
     this.isAuthenticated = this.authService.isLoggedIn();
 
     if (userID) {
       const userObject = JSON.parse(userID);
       this.pseudoMusicien = userObject.pseudo;
+      this.photoMusicien = userObject.photo;
+      console.log(userObject.photo);
     }
   }
 
