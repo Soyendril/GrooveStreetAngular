@@ -1,0 +1,51 @@
+# Test de connection
+# Permet de vérifier si un utilisateur est connecté
+# Recupere en supplément la valeur du cookieMusicien
+# Ce cookieMusicien est un tableau json de la valeur de musicien
+
+
+* en import :
+import Musicien from 'src/app/authentification/model/musicien.model';
+import { AuthService } from 'src/app/authentification/services/auth.service';
+
+* dans les attributs :
+musicien!: Musicien;
+
+
+* Dans le constructeur (dans les parentheses en injection):
+private authService: AuthService,
+private conversationService: ConversationService,
+
+
+* dans le ngOnInit :
+
+    // verifie si l'utilisateur est connecté
+    // sinon redirige en page d'accoueil
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['login']);
+    } else {
+      // met a jour les infos de musicien
+      this.authService.autoLogin();
+      // recupere le contenu de musicien
+      this.authService.getMusicien().subscribe((musicien) => {
+        if (musicien) {
+          this.musicien = musicien;
+        }
+      });
+      
+    }
+
+
+# A utiliser pour un test d'authentification simple :
+
+# exemple dans le composant html :
+    <div *ngIf="isAuthenticated">
+        <button (click)="logout()">Se déconnecter</button>
+    </div>
+
+# dans le composant ts :
+isAuthenticated:boolean = false;
+
+ngOnInit(): void {
+  this.isAuthenticated = this.authService.isLoggedIn();
+}

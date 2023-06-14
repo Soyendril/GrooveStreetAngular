@@ -20,7 +20,17 @@
         <div class="hello-photo" [ngStyle]="{ 'background-image': 'url(' + photoMusicien + ')'}"></div>
       </div>
 
-      <button (click)="logout()">Se déconnecter</button>
+    <div class="shadow">
+        <img src="/assets/img/settings.png" alt="settings" routerLink="/Settings">
+    </div>
+    <div class="shadow">
+        <img src="/assets/img/logocamera.png" alt="add picture" routerLink="/Bio/EditPhoto">
+    </div>
+    <div class="shadow">
+        <img src="/assets/img/edit.png" alt="edit profile" routerLink="/Bio">
+    </div>
+    <div class="logout-container">
+        <button class="logout" (click)="logout()">Déconnexion</button>
     </div>
   </ng-template>
 </div>

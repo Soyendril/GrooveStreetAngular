@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { MusicienService } from '../Services/musicien.service';
+
 import Musicien from 'src/app/authentification/model/musicien.model';
 
 @Component({
