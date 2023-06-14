@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { MusicienService } from '../Services/musicien.service';
+
 import Musicien from 'src/app/authentification/model/musicien.model';
 
 @Component({
@@ -26,6 +27,7 @@ export class HomepageComponent implements OnInit {
   };
 
   pseudoMusicien?: string;
+  photoMusicien?: string;
 
   isAuthenticated:boolean = false;
   // isLoggedIn: boolean = false;
@@ -41,12 +43,15 @@ export class HomepageComponent implements OnInit {
    * ou le bouton de déconnexion
    */
   ngOnInit(): void {
+    this.authService.autoLogin();
     const userID = this.authService.getId();
     this.isAuthenticated = this.authService.isLoggedIn();
 
     if (userID) {
       const userObject = JSON.parse(userID);
       this.pseudoMusicien = userObject.pseudo;
+      this.photoMusicien = userObject.photo;
+      console.log(userObject.photo);
     }
   }
 

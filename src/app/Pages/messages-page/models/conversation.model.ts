@@ -1,8 +1,11 @@
 export default interface Conversation{
-    id: number | null;
+    id: string | null;
     message: string;
-    userEnvoiId: number;
-    userEnvoiName: string;
-    userRecoitId: number;
-    userRecoitName: string;
+    musicien1_id: string;
+    musicien2_id: string;
+    date: Date;
+    photo: string;
   }
+
+  // userEnvoiName: string;
+  // userRecoitName: string;

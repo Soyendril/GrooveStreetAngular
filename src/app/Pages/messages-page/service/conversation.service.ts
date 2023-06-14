@@ -40,8 +40,15 @@ export class ConversationService {
     return this.http.get<Conversation[]>(url);
   }
   
+  /**
+   * recupere la conversation entre 2 musiciens
+   * @param conversation1Id 
+   * @param conversation2Id 
+   * @returns 
+   */
   getConversationsByIdUnique(conversation1Id: string, conversation2Id: string): Observable<Conversation[]> {
     const url = `${this.apiUrl}/unique/${conversation1Id}?id2=${conversation2Id}`;
+    console.log("url : " + url)
     return this.http.get<Conversation[]>(url);
   }
   

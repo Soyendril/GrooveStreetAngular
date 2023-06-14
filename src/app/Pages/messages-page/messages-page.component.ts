@@ -43,8 +43,6 @@ export class MessagesPageComponent implements OnInit {
       });
       // met a jour la liste des discussions
       this.getListConversationById();
-
-
     }
   }
 
@@ -107,4 +105,5 @@ export class MessagesPageComponent implements OnInit {
       return seconds === 1 ? seconds + " seconde" : seconds + " secondes";
     }
   }
+
 }
