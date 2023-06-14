@@ -1,19 +1,26 @@
 <div id="accueil">
-  <p>Hello {{ pseudoMusicien }} ! </p>
-  <h1> Qui sommes nous?</h1>
-  <p>Sousou, Titou & Delou : Developpeurs Full Stack</p>
-  <h3>Notre objectif :</h3>
-  <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
-  <p>Vous devez devenir membre pour bénéficier de nos services</p>
-
   <div *ngIf="!isAuthenticated; else elseBlock">
-      <button routerLink="/login" class="btnOne">Connexion</button>
-      <button routerLink="/register" class="btnOne">Inscription</button>
+
+    <img class="hello-logo" src="assets/img/logosite.png" alt="GROOVESTREET">
+    <h1> Qui sommes nous?</h1>
+    <p>Delphine, Souleymane & Titouan: Developpeurs Full Stack</p>
+    <h3>Notre objectif :</h3>
+    <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
+    <p>Vous devez devenir membre pour bénéficier de nos services</p>
+
+    <button routerLink="/login" class="btnOne">Connexion</button>
+    <button routerLink="/register" class="btnOne">Inscription</button>
+
   </div>
 
   <ng-template #elseBlock>
     <div >
-        <button (click)="logout()">Se déconnecter</button>
+      <div>
+        <p>Hello {{ pseudoMusicien }} ! </p>
+        <div class="hello-photo" [ngStyle]="{ 'background-image': 'url(' + photoMusicien + ')'}"></div>
+      </div>
+
+      <button (click)="logout()">Se déconnecter</button>
     </div>
   </ng-template>
 </div>
