@@ -13,13 +13,13 @@
 
   <ng-template #elseBlock>
     <div class="shadow">
-        <img src="/assets/img/settings.png" alt="settings">
+        <img src="/assets/img/settings.png" alt="settings" routerLink="/Settings">
     </div>
     <div class="shadow">
-        <img src="/assets/img/logocamera.png" alt="add picture">
+        <img src="/assets/img/logocamera.png" alt="add picture" routerLink="/Bio/EditPhoto">
     </div>
     <div class="shadow">
-        <img src="/assets/img/edit.png" alt="edit profile">
+        <img src="/assets/img/edit.png" alt="edit profile" routerLink="/Bio">
     </div>
     <div class="logout-container">
         <button class="logout" (click)="logout()">Déconnexion</button>
