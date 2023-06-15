@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 /* Style commun au site */
 :root {
     --color-black: #333333;
@@ -17,7 +19,8 @@ body {
     width: 100vw;
     min-height: 100vh;
     font-size: 16px;
-}
+    font-family: 'Open Sans', sans-serif;
+  }
 
 /* classe commune aux boutons */
 .btnOne {
@@ -82,7 +85,7 @@ label {
 
   /** gestion des liens */
 
-  
+
 /*Styles spécifiques pour les grands écrans type écrans d'ordinateur*/
 @media screen and (min-width: 980px) {
     body {

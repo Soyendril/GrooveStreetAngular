@@ -1,29 +1,32 @@
 <div *ngIf="!(musicienService.profilConsulted$ | async); else elseBlock">
 
   <div *ngIf="!(musicienService.musiciensEpuises$ | async); else elseBlock" >
-    <div id="contail-profil-personne" [ngStyle]="{ 'background-image': 'url(' + musicien.photo + ')'}">
-      <h1 class="shadow"> {{ musicien.nom }}</h1>
-      <p class="shadow"><img src="/assets/img/marker.png" alt="marker">{{ musicien.codePostal }}</p>
-      <p class="shadow">{{ musicien.style }}
-          <a>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path
-                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-              </svg>
-          </a>
-      </p>
-      <p class="p-vert">{{ musicien.pseudo }}</p>
-      <p class="p-vert">{{ musicien.description }}</p>
-    </div>
-    <div id="contain-bouton-bas">
-      <app-nav-boutons-bas></app-nav-boutons-bas>
-    </div>
+      <div id="contail-profil-personne" [ngStyle]="{ 'background-image': 'url(' + musicien.photo + ')'}" class="centered-background">
+        <h1> {{ musicien.nom }}</h1>
+        <p class="shadow"><img src="/assets/img/marker.png" alt="marker">{{ musicien.codePostal }}</p>
+        <p class="shadow">{{ musicien.style }}
+            <a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+            </a>
+        </p>
+        <p class="p-line">{{ musicien.pseudo }}</p>
+        <p class="p-vert">{{ musicien.description }}</p>
+      </div>
+      <div id="contain-bouton-bas">
+        <app-nav-boutons-bas></app-nav-boutons-bas>
+      </div>
+
   </div>
   <ng-template #elseBlock>
-    <div>
-      <h2>Revoir les profils ?</h2>
-      <button (click)="updateMusicien()">Oui</button>
+    <div class="carte">
+      <div id="contail-profil-personne2">
+        <h2>Revoir les profils ?</h2>
+        <button (click)="updateMusicien()">Oui</button>
+      </div>
     </div>
   </ng-template>
 </div>
@@ -31,7 +34,7 @@
 <ng-template #elseBlock>
   <div class="carte">
     <div id="contail-profil-personne2">
-      <h2>Revoir les profils ignorés?</h2>
+      <h2>Revoir les profils ignorés ?</h2>
         <button (click)="updateMusicien()">Oui</button>
     </div>
   </div>

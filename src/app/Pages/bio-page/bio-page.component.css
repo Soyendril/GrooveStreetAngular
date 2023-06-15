@@ -1,29 +1,31 @@
-button {
-    background-color: #ffffff; /* Définit la couleur de fond */
-    background-size: cover; /* Redimensionne l'image de fond pour remplir le bouton */
-    color: white; /* Définit la couleur du texte à l'intérieur du bouton */
-    border: none; /* Supprime la bordure par défaut du bouton */
-    padding: 12px 24px; /* Définit l'espacement entre le texte et les bords du bouton */
-    text-align: center; /* Centre le texte à l'intérieur du bouton */
-    display: inline-block; /* Définit le bouton comme un élément en ligne */
-    cursor: pointer; /* Définit le curseur de la souris en forme de main lorsqu'il survole le bouton */
-    height: 70px;
-    width: 70px;
-    
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
   }
-  
+  h2{
+    color: aliceblue;
+    text-align: center;
+  }
 
-.roue{
-    background-image: url("src\assets\img\settings.png"); /* Définit une image de fond */
-   
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.pb-camera{
-    background-image: url("src\assets\img\logocamera.png"); /* Définit une image de fond */
-   
+  label {
+    margin-bottom: 10px;
+    color: aliceblue;
+  }
 
-}
-.edit{
-    background-image: url("src\assets\img\edit.png"); /* Définit une image de fond */
-    
-}
+  input[type="text"] {
+    width: 50vw;
+    height: 25vh;
+  }
+
+  input[type="submit"] {
+    margin-top: 20px;
+  }
