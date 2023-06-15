@@ -48,25 +48,31 @@ body {
 }
 
 input {
-    margin: 10px;
-    width: 200px;
-    height: 30px;
-    background-color: #0FA47A;
-    color: #fff;
-    border: none;
+    margin: 10px 0;
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    color: #0FA47A;
+    border: 1px solid #0FA47A;
     letter-spacing: 2px;
     border-radius: 10px;
     padding: 10px;
+    
 }
 
 input:focus {
     outline: none;
 }
 
+input::placeholder{
+    color: #0FA47A;
+}
+
 input,
 label {
     font-weight: bold;
     font-size: 1rem;
+    color: #fff;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
