@@ -4,8 +4,7 @@
     <div *ngFor="let message of messages">
       <a [routerLink]="['/messages', message.id]">
         <div id="contain-texte">
-          <div class="img-logo">
-            <img [src]="cheminPhotos + message.photo" id="logosite" alt="Groove Street">
+          <div class="img-logo" [style.backgroundImage]="'url(' + message.photo + ')'">
           </div>
           <div id="contain-bloc-message">
             <div id="texte-message">

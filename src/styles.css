@@ -26,7 +26,7 @@ body {
 .btnOne {
     margin: 10px;
     width: 34%;
-    height: auto;
+    height: 40px;
     padding: 4px;
     border-radius: 10px;
     border: none;
@@ -45,12 +45,13 @@ body {
 
 .btnLarge {
     width: 50%;
+    height: 40px;
 }
 
 input {
     margin: 10px;
     width: 200px;
-    height: 30px;
+    height: 40px;
     background-color: #0FA47A;
     color: #fff;
     border: none;

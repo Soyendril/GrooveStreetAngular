@@ -12,7 +12,7 @@ import Musicien from 'src/app/authentification/model/musicien.model';
 export class MessagesPageComponent implements OnInit {
   messages: any[] = []; // liste des messages récupérés du back : id + nom
   musicien!: Musicien;
-  cheminPhotos: string = "./assets/img/avatars/";
+  // cheminPhotos: string = "./assets/img/avatars/";
 
   // creation du nom de cookie par rapport au port du localhost de l'application utilisé
   cookieId: string;
