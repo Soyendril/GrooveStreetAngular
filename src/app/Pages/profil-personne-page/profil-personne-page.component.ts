@@ -21,7 +21,7 @@ export class ProfilPersonnePageComponent implements OnInit {
     style: '',
     photo: '',
     codePostal: '',
-    age: undefined
+    age: undefined,
   };
 
   constructor(private _musicienService: MusicienService,

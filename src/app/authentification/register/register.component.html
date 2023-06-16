@@ -10,32 +10,40 @@
             Les champs de mot de passe ne correspondent pas.
         </div>
         <div class="group">
-            <label for="nom" class="label">Pseudo :</label>
-            <input id="nom" type="text" name="nom" formControlName="nom" placeholder="Nom d'utilisateur">
+            <label for="nom" class="label">Pseudonyme :</label>
+            <input id="nom" type="text" name="nom" formControlName="nom" placeholder="Votre Nom d'utilisateur">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
 
         <div class="group">
-            <label for="email" class="label">Email :</label>
+            <label for="email" class="label">E-mail :</label>
             <input id="email" type="email" name="email" placeholder="Votre email" formControlName="email">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
         <div class="group">
-            <label for="password" class="label">Password</label>
+            <label for="nom" class="label">Code Postal :</label>
+            <input id="nom" type="text" name="codePostal" formControlName="codePostal" placeholder=" Votre Code Postal">
+        </div>
+        <div class="group">
+            <label for="nom" class="label">Nom de Commune :</label>
+            <input id="nom" type="text" name="commune" formControlName="commune" placeholder="Votre Commune">
+        </div>
+        <div class="group">
+            <label for="password" class="label">Mot de passe :</label>
             <input id="password" type="password" name="password" placeholder="Votre mot de passe"
                 formControlName="password">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
 
         <div class="group">
-            <label for="confirmPassword" class="label">Confirm password :</label>
+            <label for="confirmPassword" class="label">Confirmez le mot de passe :</label>
             <input id="confirmPassword" type="password" name="confirmPassword" formControlName="confirmPassword"
                 class="shadow border rounded w-full p-2" placeholder="Retapez votre mot de passe">
         </div>
 
         <div class="group">
             <button type="submit" class="btnFull">Créer mon compte</button>
-            <button routerLink="/login" class="btnFull">Déja membre</button>
+            <button routerLink="/login" class="btnFull">Déja membre ?</button>
         </div>
     </form>
 

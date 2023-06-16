@@ -4,16 +4,16 @@
             <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
         </div>
     </a>
-    <h1>Devenir membre</h1>
+    <h1>Connectez vous</h1>
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
         <div *ngIf="errorsAuth" class="erreur">Erreur dans l'adresse email ou le password</div>
         <div class="group">
-            <label for="email" class="label">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label for="email" class="label">E-mail : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input id="email" type="email" name="email" formControlName="email" placeholder="Votre adresse email">
         </div>
 
         <div class="group">
-            <label for="password" class="label">Password :</label>
+            <label for="password" class="label">Mot de passe :</label>
             <input id="password" type="password" name="password" formControlName="password"
                 placeholder="Votre mot de passe">
         </div>
