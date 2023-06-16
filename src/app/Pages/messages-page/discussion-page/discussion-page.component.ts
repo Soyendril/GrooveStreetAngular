@@ -19,7 +19,7 @@ import Conversation from '../models/conversation.model';
 export class DiscussionPageComponent implements OnDestroy, OnInit {
   currentDate: Date = new Date();
   formattedDateTime = this.datePipe.transform(this.currentDate, 'yyyy-MM-dd HH:mm:ss');
-  cheminPhotos: string = "./assets/img/avatars/";
+  // cheminPhotos: string = "./assets/img/avatars/";
 
   form = new FormGroup({
     'musicien1_id': new FormControl(""),
@@ -34,6 +34,7 @@ export class DiscussionPageComponent implements OnDestroy, OnInit {
   lastUserMessage: any = '';
   musicien!: Musicien;
   photo: string = "default.png";
+  
 
   @Input()
   musicien2_id: string = '';
