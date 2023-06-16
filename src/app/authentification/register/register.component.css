@@ -5,19 +5,27 @@
     margin: 0 auto;
     position: absolute;
     top: 0;
+    background-color: #333333;
 }
 h1{
     text-align: center;
     margin-top: 50px;
+    color: #fff;
 }
 
 form{
-    margin: 50px auto 0;
+    margin: 50px auto 0 auto;
+    width: 80%;
 }
 
-#form-buttons2{
-    width: 100%;
-    margin-top: 10px;
+#form-buttons{
+    display: flex;
+    margin: 50px auto 0 auto;
+    width: 80%;
+}
+
+.group{
+    margin: 20px 0;
 }
 
 button{
@@ -40,11 +48,11 @@ h2{
     margin: 40px;
     text-align: center;
 }
-input{
+/* input{
     width: 220px;
 }
 
 label{
     color: #fff;
     text-shadow: 2px 2px 0 #1f1f1f, 2px -2px 0 #1f1f1f, -2px 2px 0 #1f1f1f, -2px -2px 0 #1f1f1f, 2px 0px 0 #1f1f1f, 0px 2px 0 #1f1f1f, -2px 0px 0 #1f1f1f, 0px -2px 0 #1f1f1f;
-}
+} */

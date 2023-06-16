@@ -13,7 +13,6 @@
 }
 button{
     background-color: lightseagreen;
-    margin: 20px;
     width: 50px;
     height: 50px;
     color: aliceblue;
@@ -24,6 +23,9 @@ button{
 .defil-messages{
     display: flex;
     margin: 10px 0;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
 }
 
 /* classe quand sender*/
@@ -36,7 +38,7 @@ button{
 /* classe quand reciever*/
 .reciever{
     background-color: #0FA47A;
-    margin-left: 50px;
+    margin-left: 40%;
 }
 
 #texte-conversation{
@@ -45,6 +47,7 @@ button{
     width: 60%;
     margin-top: 10px;
     margin-bottom: 10px;
+    min-height: 50px;
 }
 .img-logo{
     width: 50px;
@@ -53,6 +56,8 @@ button{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
 }
 
 #btn-send{
@@ -61,6 +66,7 @@ button{
     background-color: #0FA47A;
     border-radius: 10px;
     cursor: pointer;
+    margin-left: 4px;
 }
 .ico-button{
     fill: #1f1f1f;
@@ -69,4 +75,15 @@ button{
     text-align: center;
     padding: 6px;
 }
+#align-message{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
 
+input{
+    /* width: calc(100% - 40px); */
+    width: 100%;
+}

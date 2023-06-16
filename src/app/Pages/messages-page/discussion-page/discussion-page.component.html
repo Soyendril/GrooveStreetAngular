@@ -2,7 +2,7 @@
   <div id="content-messages">
     <div *ngFor="let conversation of conversations">
       <div class="defil-messages">
-        <div class="img-logo" [style.backgroundImage]="'url(' + conversation.photo + ')'">
+        <div *ngIf="musicien.id == conversation.musicien1_id" class="img-logo" [style.backgroundImage]="'url(' + conversation.photo + ')'">
         </div>
         <div id="texte-conversation" [class.sender]="musicien.id == conversation.musicien1_id ? true : false"
           [class.reciever]="musicien.id != conversation.musicien1_id ? true : false">
@@ -12,7 +12,7 @@
     </div>
     <form [formGroup]="form" (ngSubmit)="sendMessage()">
       <div id="align-message">
-        <input type="text" formControlName="message">
+        <input type="text" formControlName="message" placeholder="Message">
         <button id="btn-send" type="submit">
           <svg xmlns="http://www.w3.org/2000/svg" class="ico-button" viewBox="0 0 16 16">
             <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z" />

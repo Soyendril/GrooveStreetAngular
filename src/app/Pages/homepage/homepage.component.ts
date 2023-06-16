@@ -51,7 +51,7 @@ export class HomepageComponent implements OnInit {
       const userObject = JSON.parse(userID);
       this.pseudoMusicien = userObject.pseudo;
       this.photoMusicien = userObject.photo;
-      console.log(userObject.photo);
+      console.log("La photo : " + userObject.photo);
     }
   }
 
