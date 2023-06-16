@@ -9,33 +9,33 @@
         <div *ngIf="formMusicien.get('confirmPassword')?.hasError('verifPassword')" class="erreur">
             Les champs de mot de passe ne correspondent pas.
         </div>
-        <div class="mb-4">
-            <label for="nom" class="label">Pseudo &nbsp;&nbsp;&nbsp;</label>
-            <input id="nom" type="text" name="nom" class="input" formControlName="nom" placeholder="Nom d'utilisateur">
+        <div class="group">
+            <label for="nom" class="label">Pseudo :</label>
+            <input id="nom" type="text" name="nom" formControlName="nom" placeholder="Nom d'utilisateur">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
 
-        <div class="mb-4">
-            <label for="email" class="label">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input id="email" type="email" name="email" class="input" placeholder="Votre email" formControlName="email">
+        <div class="group">
+            <label for="email" class="label">Email :</label>
+            <input id="email" type="email" name="email" placeholder="Votre email" formControlName="email">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
-        <div class="mb-4">
+        <div class="group">
             <label for="password" class="label">Password</label>
-            <input id="password" type="password" name="password" class="input" placeholder="Votre mot de passe"
+            <input id="password" type="password" name="password" placeholder="Votre mot de passe"
                 formControlName="password">
             <!-- <span class="text-red-400 text-sm">{{ $message }}</span> -->
         </div>
 
-        <div class="mb-4">
-            <label for="confirmPassword" class="label">Confirm </label>
+        <div class="group">
+            <label for="confirmPassword" class="label">Confirm password :</label>
             <input id="confirmPassword" type="password" name="confirmPassword" formControlName="confirmPassword"
                 class="shadow border rounded w-full p-2" placeholder="Retapez votre mot de passe">
         </div>
 
-        <div id="form-buttons2">
-            <button type="submit" class="btnOne btnLarge">Créer mon compte</button>
-            <button routerLink="/login" class="btnOne btnLarge">Déja membre</button>
+        <div class="group">
+            <button type="submit" class="btnFull">Créer mon compte</button>
+            <button routerLink="/login" class="btnFull">Déja membre</button>
         </div>
     </form>
 
