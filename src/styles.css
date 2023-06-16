@@ -38,7 +38,7 @@ body {
 .btnOne {
     margin: 10px;
     width: 34%;
-    height: auto;
+    height: 40px;
     padding: 4px;
     border-radius: 10px;
     border: none;
@@ -57,6 +57,7 @@ body {
 
 .btnLarge {
     width: 50%;
+    height: 40px;
 }
 
 input {

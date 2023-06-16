@@ -1,8 +1,10 @@
 /* utilisee comme classe centrale dans l'écran */
- #homeCentral{
+#homeCentral{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #333333;
+    height: 100vh;
+    /* background-color: #333333; */
     background-color: transparent;
     background-size:cover;
     background-repeat: no-repeat;
@@ -13,6 +15,9 @@
 
 .avecBg{
     background-image: url("src\assets\img\fondsAccueil.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 
