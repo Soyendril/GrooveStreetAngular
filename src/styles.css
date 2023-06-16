@@ -20,7 +20,19 @@ body {
     min-height: 100vh;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
-  }
+}
+
+.contain-pages {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 
 /* classe commune aux boutons */
 .btnOne {
@@ -49,41 +61,51 @@ body {
 }
 
 input {
-    margin: 10px;
-    width: 200px;
+
+    margin: 10px 0;
+    width: 100%;
     height: 40px;
-    background-color: #0FA47A;
-    color: #fff;
-    border: none;
+    background-color: #fff;
+    color: #0FA47A;
+    border: 1px solid #0FA47A;
+
     letter-spacing: 2px;
     border-radius: 10px;
     padding: 10px;
+
 }
 
 input:focus {
     outline: none;
 }
 
+input::placeholder {
+    color: #0FA47A;
+}
+
 input,
 label {
     font-weight: bold;
     font-size: 1rem;
+    color: #0FA47A;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #fff;
-    opacity: 1; /* Firefox */
-  }
+    opacity: 1;
+    /* Firefox */
+}
 
-  .erreur{
+.erreur {
     margin: 20px auto;
     color: red;
     font-weight: bold;
     width: 90%;
     font-size: 1.2rem;
-  }
+}
 
-  /** gestion des liens */
+/** gestion des liens */
 
 
 /*Styles spécifiques pour les grands écrans type écrans d'ordinateur*/
