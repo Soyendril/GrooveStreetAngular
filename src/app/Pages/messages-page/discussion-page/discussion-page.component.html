@@ -1,17 +1,8 @@
 <div id="contain-discussion-prive">
   <div id="content-messages">
-
-    
-      <li *ngFor="let conversation of conversations">
-        <div class="defil-messages">
-          <div class="img-logo" [ngStyle]="{ 'background-image': 'url(' + conversation.photo + ')'}">
-          </div>
-          <div id="texte-conversation sender">
-            {{ conversation.message }}
-          </div>
-
-
-          
+    <div *ngFor="let conversation of conversations">
+      <div class="defil-messages">
+        <div class="img-logo" [style.backgroundImage]="'url(' + conversation.photo + ')'">
         </div>
         <div id="texte-conversation" [class.sender]="musicien.id == conversation.musicien1_id ? true : false"
           [class.reciever]="musicien.id != conversation.musicien1_id ? true : false">

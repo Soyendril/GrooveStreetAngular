@@ -49,23 +49,10 @@ button{
 .img-logo{
     width: 50px;
     height: 50px;
-
-    border-radius: 50%;
-    background-position: center center;
-    background-size: cover;
     margin-right: 10px;
-}
-
-#align-message{
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-input{
-    width: 80%;
-    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 #btn-send{
@@ -82,3 +69,4 @@ input{
     text-align: center;
     padding: 6px;
 }
+
