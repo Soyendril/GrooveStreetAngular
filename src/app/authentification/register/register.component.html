@@ -1,7 +1,9 @@
 <div id="contain-register">
-    <div class="img-logo">
-        <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
-    </div>
+    <a routerLink="/home">
+        <div class="img-logo">
+            <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
+        </div>
+    </a>
     <h1>Completez vos informations</h1>
     <form [formGroup]="formMusicien" (ngSubmit)="onSubmit()">
         <div *ngIf="formMusicien.get('confirmPassword')?.hasError('verifPassword')" class="erreur">

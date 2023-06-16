@@ -1,14 +1,15 @@
 /* utilisee comme classe centrale dans l'écran */
-/* #homeCentral{
+ #homeCentral{
     width: 100vw;
     height: 100vh;
     background-color: #333333;
+    background-color: transparent;
     background-size:cover;
     background-repeat: no-repeat;
     position: absolute;
     top: 0;
     left: 0;
-} */
+}
 
 .avecBg{
     background-image: url("src\assets\img\fondsAccueil.png");
@@ -18,5 +19,5 @@
 #nav-vide{
     width: 100vw;
     height: 70px;
-    margin-top: 40px;
+    margin-top: 20px;
 }

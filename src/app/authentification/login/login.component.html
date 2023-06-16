@@ -1,8 +1,9 @@
 <div id="contain-login">
-    <div class="img-logo">
-        <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
-    </div>
-
+    <a routerLink="/home">
+        <div class="img-logo">
+            <img src="/assets/img/logosite.png" id="logosite" alt="Groove Street">
+        </div>
+    </a>
     <h1>Devenir membre</h1>
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
         <div *ngIf="errorsAuth" class="erreur">Erreur dans l'adresse email ou le password</div>
