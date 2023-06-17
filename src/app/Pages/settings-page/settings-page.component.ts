@@ -43,12 +43,7 @@ export class SettingsPageComponent implements OnInit {
       this.ageMusicien = userObject.age;
       this.emailMusicien = userObject.email;
 
-      this.settingsForm.patchValue({
-        commune: this.communeMusicien,
-        codePostal: this.codePostalMusicien,
-        age: this.ageMusicien,
-        email: this.emailMusicien
-      });
+      this.patchFormValues();
     }
   }
 
@@ -63,16 +58,41 @@ export class SettingsPageComponent implements OnInit {
       const userId = userObject.id;
       this.authService.deleteUser(userId).subscribe(
         () => {
-          // Compte supprimé avec succès
           console.log('Compte supprimé avec succès');
           this.authService.logout();
           this.router.navigate(['/home']);
         },
         (error) => {
-          // Une erreur s'est produite lors de la suppression du compte
           console.error('Erreur lors de la suppression du compte :', error);
         }
       );
     }
   }
+
+  private patchFormValues() {
+    if (this.communeMusicien) {
+      this.settingsForm.patchValue({
+        commune: this.communeMusicien
+      });
+    }
+
+    if (this.codePostalMusicien) {
+      this.settingsForm.patchValue({
+        codePostal: this.codePostalMusicien
+      });
+    }
+
+    if (this.ageMusicien) {
+      this.settingsForm.patchValue({
+        age: this.ageMusicien
+      });
+    }
+
+    if (this.emailMusicien) {
+      this.settingsForm.patchValue({
+        email: this.emailMusicien
+      });
+    }
+  }
+  
 }
