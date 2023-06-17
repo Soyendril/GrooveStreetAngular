@@ -37,11 +37,20 @@ export class SettingsPageComponent implements OnInit {
 
     const userID = this.authService.getId();
     if (userID) {
-      const userObject = JSON.parse(userID);
+      const userObject = JSON.parse(userID) as { 
+        codePostal?: { 
+          commune?: string; 
+          zipcode?: string; 
+        }; 
+        age?: string; 
+        email?: string; 
+      };
+      
       this.communeMusicien = userObject.codePostal?.commune;
       this.codePostalMusicien = userObject.codePostal?.zipcode;
       this.ageMusicien = userObject.age;
       this.emailMusicien = userObject.email;
+      console.log("userobject"+ userObject);
 
       this.patchFormValues();
     }
