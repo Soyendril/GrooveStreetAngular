@@ -148,3 +148,12 @@ h1{
   margin: 20px auto;
   margin-bottom: 64px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btnOne {
+  width: 75%;
+}

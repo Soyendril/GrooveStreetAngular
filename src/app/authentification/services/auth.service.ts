@@ -218,12 +218,17 @@ export class AuthService {
 
   /**
    *
-   * @param musicenId Supperssion d'un musicien
+   * @param musicenId Suppression d'un musicien
    * @returns
    */
-  deleteUser(musicenId: number | null): Observable<unknown> {
+  deleteUser(musicenId: number | String | null): Observable<unknown> {
     const url = `${this.apiUrl}/${musicenId}`;
     return this.http.delete(url);
+  }
+
+  deleteAccount(): Observable<any> {
+    const userID = this.getId(); // Méthode pour récupérer l'ID de l'utilisateur actuellement connecté
+    return this.deleteUser(userID);
   }
 
   /**

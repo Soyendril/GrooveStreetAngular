@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/authentification/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings-page',
@@ -17,7 +18,8 @@ export class SettingsPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.settingsForm = this.formBuilder.group({
       commune: [''],
@@ -52,5 +54,25 @@ export class SettingsPageComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  deleteAccount() {
+    const userID = this.authService.getId();
+    if (userID) {
+      const userObject = JSON.parse(userID);
+      const userId = userObject.id;
+      this.authService.deleteUser(userId).subscribe(
+        () => {
+          // Compte supprimé avec succès
+          console.log('Compte supprimé avec succès');
+          this.authService.logout();
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          // Une erreur s'est produite lors de la suppression du compte
+          console.error('Erreur lors de la suppression du compte :', error);
+        }
+      );
+    }
   }
 }
