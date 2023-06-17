@@ -23,6 +23,8 @@ import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { DatePipe } from '@angular/common';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import { DatePipe } from '@angular/common';
     NavBoutonsBasComponent,
     BoutonsStyleComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,9 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CookieModule.withOptions()
+    CookieModule.withOptions(),
+  
+    
   ],
   providers: [
     {

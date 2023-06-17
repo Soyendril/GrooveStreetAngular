@@ -203,9 +203,6 @@ export class AuthService {
   getUsers(): Observable<Musicien[]> {
     return this.http.get<Musicien[]>(this.apiUrl);
   }
-
-
-
   /**
    * Mise à jour d'un musicien
    * @param musicien

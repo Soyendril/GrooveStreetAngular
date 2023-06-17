@@ -51,3 +51,8 @@ h1,h2{
   .form-container input[type="file"] {
     margin-bottom: 20px;
   }
+  .form-container input[routerLink="/home"] {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
