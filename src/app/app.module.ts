@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CookieModule } from 'ngx-cookie';
 import { RxStomp } from '@stomp/rx-stomp';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { SettingsPageComponent } from './Pages/settings-page/settings-page.component';
@@ -48,7 +49,8 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CookieModule.withOptions()
+    CookieModule.withOptions(),
+    BrowserAnimationsModule
   ],
   providers: [
     {
