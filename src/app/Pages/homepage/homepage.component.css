@@ -171,3 +171,11 @@ h1{
 .p-membre{
   margin-bottom: 40px;
 }
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btnOne {
+  width: 75%;
+}
