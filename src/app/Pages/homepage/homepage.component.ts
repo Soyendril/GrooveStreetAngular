@@ -2,16 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 import { MusicienService } from '../Services/musicien.service';
-
 import Musicien from 'src/app/authentification/model/musicien.model';
+
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
 })
-export class HomepageComponent implements OnInit {
 
+export class HomepageComponent implements OnInit {
 
   musicien: Musicien ={
     id: null,
@@ -32,6 +32,10 @@ export class HomepageComponent implements OnInit {
   isAuthenticated:boolean = false;
   // isLoggedIn: boolean = false;
 
+  currentState = 'premiere-div'; // État initial, la première div visible
+  currentIndex = 0;
+  divs = ['premiere-div', 'deuxieme-div']; // Liste des classes CSS pour les divs
+
   constructor(
     private authService: AuthService,
     private _musicienService: MusicienService
@@ -51,8 +55,16 @@ export class HomepageComponent implements OnInit {
       const userObject = JSON.parse(userID);
       this.pseudoMusicien = userObject.pseudo;
       this.photoMusicien = userObject.photo;
-      console.log("La photo : " + userObject.photo);
     }
+
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.divs.length; // Alterner l'index entre 0 et 1
+    }, 3000);
+  
+  }
+
+  toggleState() {
+    this.currentState = this.currentState === 'premiere-div' ? 'deuxieme-div' : 'premiere-div';
   }
 
   /** appelle la methode de deconnexion du service
