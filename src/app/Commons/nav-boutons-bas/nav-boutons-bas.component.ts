@@ -2,6 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { MusicienService } from 'src/app/Pages/Services/musicien.service';
 import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
+import { AuthService } from 'src/app/authentification/services/auth.service';
+
 
 @Component({
   selector: 'app-nav-boutons-bas',
@@ -35,18 +37,46 @@ export class NavBoutonsBasComponent {
     }
   ]
 
-  constructor(private _musicienService: MusicienService,
-    private musicienCommunicationService: MusicienCommunicationService) {  }
+  musicienActuel: Musicien | null = null;
+  isAuthenticated: boolean = false;
+
+
+  constructor(
+    private _musicienService: MusicienService,
+    private musicienCommunicationService: MusicienCommunicationService,
+    private authService: AuthService,
+  ) {   }
 
 
   getNextMusicien() {
     this._musicienService.switchRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
-        console.log(this.musicien);
         this.musicienCommunicationService.getNextMusicien(this.musicien); // Émet l'événement
         this.musicienService.profilConsulted$.next(false);
         this.musicienService.musiciensEpuises$.next(false);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  likeMusicien() {
+    this.musicienService.likeMusicien().subscribe(
+      (data) => {
+        this.musicienService.getMusicienActuel().subscribe(
+          (musicien) => {
+            this.musicienActuel = musicien;
+            const isUserLiked = this.musicienService.isUserLiked();
+            if (isUserLiked) {
+              console.log("C'est un match avec "+ this.musicienActuel.nom);
+            } else {
+              console.log(this.musicienActuel.nom + " ne t'a pas liké");
+              this.getNextMusicien();
+            }
+          }
+        );
       },
       (error) => {
         console.log(error);
