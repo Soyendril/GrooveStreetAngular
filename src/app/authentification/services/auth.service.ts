@@ -263,4 +263,13 @@ export class AuthService {
     // redirection page d'accueil
     // this.router.navigate(['home']);
   }
+  /**
+   * méthode qui permet de recuperer l'utilisateur connecté
+   * afin d'acceder à ses informations
+   * @returns 
+   */
+  getLoggedInUser(): Observable<Musicien | null> {
+    return this.musicien.asObservable();
+  }
 }
+

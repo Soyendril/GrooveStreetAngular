@@ -36,6 +36,7 @@ export class SettingsPageComponent implements OnInit {
     this.authService.autoLogin();
 
     const userID = this.authService.getId();
+    const userLogged:any = this.authService.getLoggedInUser();
     if (userID) {
       const userObject = JSON.parse(userID) as { 
         codePostal?: { 
@@ -50,7 +51,13 @@ export class SettingsPageComponent implements OnInit {
       this.codePostalMusicien = userObject.codePostal?.zipcode;
       this.ageMusicien = userObject.age;
       this.emailMusicien = userObject.email;
-      console.log("userobject"+ userObject);
+      console.log("userobject "+ userObject);
+      console.log("userID "+ userID);
+      console.log("userLogged " + userLogged);
+      console.log("commune "+ userObject.codePostal?.commune);
+      console.log("codepostal "+ userObject.codePostal?.zipcode);
+      console.log("age "+ userObject.age);
+      console.log("mail "+ userObject.email);
 
       this.patchFormValues();
     }
@@ -77,31 +84,26 @@ export class SettingsPageComponent implements OnInit {
       );
     }
   }
-
   private patchFormValues() {
     if (this.communeMusicien) {
       this.settingsForm.patchValue({
         commune: this.communeMusicien
       });
     }
-
     if (this.codePostalMusicien) {
       this.settingsForm.patchValue({
         codePostal: this.codePostalMusicien
       });
     }
-
     if (this.ageMusicien) {
       this.settingsForm.patchValue({
         age: this.ageMusicien
       });
     }
-
     if (this.emailMusicien) {
       this.settingsForm.patchValue({
         email: this.emailMusicien
       });
     }
   }
-  
 }
