@@ -19,10 +19,17 @@ export class MusicienService {
   private selectedMusicienIds: number[] = [];
   musiciensEpuises$ = new BehaviorSubject<boolean>(false);
 
+  private doneMusiciens: number[] = [];
+
   isAuthenticated:boolean = false;
 
-  constructor(private http: HttpClient,
-    private authService: AuthService) { }
+  likedMusicians: Set<number>; // Ensemble des musiciens likés par l'utilisateur courant
+  matches: Set<number>; // Ensemble des musiciens qui ont liké l'utilisateur courant
+
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.likedMusicians = new Set();
+    this.matches = new Set();
+  }
 
   authUser(){
     this.authService.autoLogin();
@@ -45,7 +52,8 @@ export class MusicienService {
       switchMap(ids => {
         let availableIds = ids.filter(id =>
           !this.selectedMusicienIds.includes(id) &&
-          !this.dislikedMusiciens.includes(id)
+          !this.dislikedMusiciens.includes(id) &&
+          !this.doneMusiciens.includes(id)
           );
         if (availableIds.length === 0) { // Tous les musiciens ont déjà été sélectionnés
           this.musiciensEpuises$.next(true);
@@ -79,7 +87,10 @@ export class MusicienService {
     this.authUserdisliked();
     return this.getMusicienIds().pipe(
       switchMap(ids => {
-        let availableIds = ids.filter(id => !this.dislikedMusiciens.includes(id));
+        let availableIds = ids.filter(id =>
+          !this.dislikedMusiciens.includes(id) &&
+          !this.doneMusiciens.includes(id)
+          );
         if (this.dislikedMusiciens.length === ids.length) {
           this.profilConsulted$.next(true);
           availableIds = [...this.dislikedMusiciens];
@@ -102,5 +113,50 @@ export class MusicienService {
   // On rend Musicien observable pour le récupérer une fois l'ID définie
   getMusicienById(id: number): Observable<Musicien> {
     return this.http.get<Musicien>(`${this.baseUrl}/${id}`);
+  }
+
+
+  getMusicienActuel(): Observable<Musicien> {
+    const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
+    return this.getMusicienById(musicienId);
+  }
+
+
+  // On ajoute l'ID du musicien liké à l'ensemble de likes
+  likeMusicien(): Observable<Musicien> {
+    const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
+    this.likedMusicians.add(musicienId);
+    return this.getMusicienById(musicienId);
+    // return this.checkMatch(musicienId);
+  }
+
+  isUserLiked(): boolean {
+    const userID = this.authService.getId();
+    if (userID) {
+      const userObject = JSON.parse(userID);
+      const userId = userObject.id;
+      return this.likedMusicians.has(userId);
+    }
+    return false;
+  }
+
+  private checkMatch(musicienId: number) {
+    /*
+      Si l'ID de l'utilisateur auth
+      est dans la liste du musicien liké
+      On l'ajoute à la Map
+    */
+    if (this.likedMusicians.has(musicienId)) {
+      this.matches.add(musicienId);
+      this.likedMusicians.delete(musicienId);
+      this.removeLikedMusicienFromList(musicienId);
+      return EMPTY;
+    }
+    return EMPTY;
+  }
+
+  // exclut profil des résultats si liké
+  private removeLikedMusicienFromList(musicienId: number): void {
+    this.doneMusiciens.push(musicienId);
   }
 }

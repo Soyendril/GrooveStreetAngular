@@ -195,7 +195,6 @@ export class AuthService {
       };
 
       this.musicien.next(loadedMusicien);
-      console.log("object: ", this.musicien);
     }
 
   ///////////

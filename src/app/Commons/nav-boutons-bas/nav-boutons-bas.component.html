@@ -2,6 +2,6 @@
   <div id="contain-boutons">
       <app-boutons-style (click)="getNextMusicien()" [imageUrl]="imageUrl[0].switch"></app-boutons-style>
       <!-- <app-boutons-style [imageUrl]="imageUrl[0].superlike"></app-boutons-style> -->
-      <app-boutons-style [imageUrl]="imageUrl[0].like"></app-boutons-style>
+      <app-boutons-style (click)="likeMusicien()" [imageUrl]="imageUrl[0].like"></app-boutons-style>
   </div>
 </div>
