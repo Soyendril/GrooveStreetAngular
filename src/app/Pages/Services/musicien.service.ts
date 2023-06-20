@@ -5,7 +5,6 @@ import Musicien from 'src/app/authentification/model/musicien.model';
 import { AuthService } from 'src/app/authentification/services/auth.service';
 
 
-
 @Injectable({
   providedIn: 'root'
 })

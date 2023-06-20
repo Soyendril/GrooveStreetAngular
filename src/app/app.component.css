@@ -18,6 +18,7 @@
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center center;
+    /* filter: saturate(2.5) brightness(0.8); */
 }
 
 

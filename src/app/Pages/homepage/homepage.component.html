@@ -1,5 +1,5 @@
 <div id="accueil">
-  <div *ngIf="!isAuthenticated; else elseBlock">
+  <div class="loging" *ngIf="!isAuthenticated; else elseBlock">
 
     <img class="hello-logo" src="assets/img/logosite.png" alt="GROOVESTREET">
     <div [ngClass]="divs[currentIndex]" class="div-defilante">
@@ -8,7 +8,7 @@
     </div>
     <div [ngClass]="divs[(currentIndex + 1) % divs.length]" class="div-defilante">
       <h1>Notre objectif :</h1>
-      <p>Creer des connexions entre musiciens et faciliter la création de groupes de musique</p>
+      <p>Créer des connexions entre musiciens et faciliter la création de groupes de musique</p>
     </div>
     <div id="buttonsConect">
       <button routerLink="/login" class="btnOne">Connexion</button>

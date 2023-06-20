@@ -16,6 +16,6 @@ export class MatchComponent {
   }
 
   goChat(){
-    this.router.navigate(['/grooves/:id'])
+    this.router.navigate(['/messages/:id'])
   }
 }
