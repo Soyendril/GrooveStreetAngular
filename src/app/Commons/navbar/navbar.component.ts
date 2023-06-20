@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Initialiser à 2 pour la page de liste de profils
 
     buttons = [
-      { id: 1, image1: 'assets/img/ppwht.png', image2: 'assets/img/ppgrn.png', routerLink: '/home' },
+      { id: 1, image1: 'assets/img/ppgrey.png', image2: 'assets/img/ppgrn.png', routerLink: '/home' },
       { id: 2, image1: 'assets/img/lgwht2.png', image2: 'assets/img/logo_vert.png', routerLink: '/Profile/1' },
       { id: 3, image1: 'assets/img/chatwht.png', image2: 'assets/img/chatgreen.png', routerLink: '/grooves' }
     ];
@@ -43,12 +43,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    
+
 
   }
 
   ngOnDestroy(): void {
-      
+
   }
 
   toggleButton(buttonId: number): void {

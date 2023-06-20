@@ -13,10 +13,10 @@ export class MusicienService {
 
   private baseUrl = 'http://localhost:8080/musiciens';
 
-  private dislikedMusiciens: any[] = [];
+  private dislikedMusiciens: any[] = []; // tableau d'ID de musiciens dislikés
   profilConsulted$ = new BehaviorSubject<boolean>(false);
 
-  private selectedMusicienIds: number[] = [];
+  private selectedMusicienIds: number[] = []; // tableau d'ID de musiciens passés
   musiciensEpuises$ = new BehaviorSubject<boolean>(false);
 
   private doneMusiciens: number[] = [];
@@ -31,6 +31,7 @@ export class MusicienService {
     this.matches = new Set();
   }
 
+  // On recupère l'ID de la personne authentifiée pour l'ejecter des résultats
   authUser(){
     this.authService.autoLogin();
     const userID = this.authService.getId();
@@ -69,6 +70,7 @@ export class MusicienService {
     );
   }
 
+  // Ejection de l'ID de la personne authentifiée pour l'option dislike
   authUserdisliked(){
     this.authService.autoLogin();
     const userID = this.authService.getId();
@@ -115,14 +117,13 @@ export class MusicienService {
     return this.http.get<Musicien>(`${this.baseUrl}/${id}`);
   }
 
-
-
+  //On récupère le musicien actuellement affiché via l'ID dernièrement utilisée
   getMusicienActuel(): Observable<Musicien> {
     const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
     return this.getMusicienById(musicienId);
   }
 
-  // On ajoute l'ID du musicien liké à l'ensemble de likes
+  // On ajoute l'ID du musicien liké à l'ensemble des profils likés
   likeMusicien(): Observable<Musicien> {
     const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
     this.likedMusicians.add(musicienId);
@@ -131,6 +132,10 @@ export class MusicienService {
     // return this.checkMatch(musicienId);
   }
 
+  /*
+    On vérifie si l'ID de la personne authentifiée est contenu
+    dans l'ensemble liké du profil affiché
+  */
   isUserLiked(): boolean {
     const userID = this.authService.getId();
     if (userID) {

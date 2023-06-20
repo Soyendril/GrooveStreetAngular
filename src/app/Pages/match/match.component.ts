@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MatchComponent {
 
-
   constructor(private router : Router) {   }
-
 
   keepScroll(){
     this.router.navigate(['/Profile/:id'])
@@ -20,5 +18,4 @@ export class MatchComponent {
   goChat(){
     this.router.navigate(['/grooves/:id'])
   }
-
 }

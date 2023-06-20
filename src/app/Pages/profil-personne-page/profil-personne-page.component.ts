@@ -36,9 +36,7 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.updateMusicien();
     this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
       this.musicien = musicien;
-
     });
-
   }
 
   updateMusicien() {
@@ -60,5 +58,4 @@ export class ProfilPersonnePageComponent implements OnInit {
   get musicienService(): MusicienService {
     return this._musicienService;
   }
-
 }
