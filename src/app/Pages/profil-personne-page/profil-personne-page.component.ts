@@ -35,18 +35,17 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.updateMusicien();
     this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
       this.musicien = musicien;
-      
-    
+
+
     });
-    
+
   }
 
   updateMusicien() {
     this.musicienService.getRandomMusicien().subscribe(
       (data) => {
         this.musicien = data;
-        console.log(this.musicien);
-        console.log(this.musicien.codePostal.zipcode);
+        //console.log(this.musicien.codePostal.zipcode);
 
 
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$

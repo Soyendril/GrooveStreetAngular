@@ -13,6 +13,8 @@ import { SettingsPageComponent } from './Pages/settings-page/settings-page.compo
 import { FormulairePageComponent } from './Pages/formulaire-page/formulaire-page.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { LoginComponent } from './authentification/login/login.component';
+import { MatchComponent } from "src/app/Pages/match/match.component";
+
 
 const routes: Routes = [
   //HOMEPAGE
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'register', component:RegisterComponent},
   // detail de la conversation entre musiciens
   { path: 'messages/:musicien2_id', component: DiscussionPageComponent },
+  // grooving
+  { path: 'itsagroove/:id', component: MatchComponent }
 ];
 
 @NgModule({

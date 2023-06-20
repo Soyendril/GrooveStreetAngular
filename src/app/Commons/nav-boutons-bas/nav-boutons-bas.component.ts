@@ -1,8 +1,11 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { MusicienService } from 'src/app/Pages/Services/musicien.service';
 import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
-import { AuthService } from 'src/app/authentification/services/auth.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { MatchComponent } from "src/app/Pages/match/match.component";
+
 
 
 @Component({
@@ -40,11 +43,14 @@ export class NavBoutonsBasComponent {
   musicienActuel: Musicien | null = null;
   isAuthenticated: boolean = false;
 
+  bsModalRef!: BsModalRef;
+
+
 
   constructor(
     private _musicienService: MusicienService,
     private musicienCommunicationService: MusicienCommunicationService,
-    private authService: AuthService,
+    private router : Router
   ) {   }
 
 
@@ -62,6 +68,7 @@ export class NavBoutonsBasComponent {
     );
   }
 
+
   likeMusicien() {
     this.musicienService.likeMusicien().subscribe(
       (data) => {
@@ -71,12 +78,28 @@ export class NavBoutonsBasComponent {
             const isUserLiked = this.musicienService.isUserLiked();
             if (isUserLiked) {
               console.log("C'est un match avec "+ this.musicienActuel.nom);
+              this.router.navigate(['/itsagroove/:id']);
             } else {
               console.log(this.musicienActuel.nom + " ne t'a pas liké");
-              this.getNextMusicien();
+              this.updateMusicien();
             }
           }
         );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateMusicien() {
+    this.musicienService.getRandomMusicien().subscribe(
+      (data) => {
+        this.musicien = data;
+        this.musicienCommunicationService.getNextMusicien(this.musicien);
+        // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
+        this.musicienService.musiciensEpuises$.next(false);
+        this.musicienService.profilConsulted$.next(false);
       },
       (error) => {
         console.log(error);
