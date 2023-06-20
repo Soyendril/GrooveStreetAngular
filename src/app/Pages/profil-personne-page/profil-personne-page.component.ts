@@ -46,7 +46,6 @@ export class ProfilPersonnePageComponent implements OnInit {
       (data) => {
         this.musicien = data;
         console.log(this.musicien);
-        console.log(this.musicien.codePostal.zipcode);
 
 
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
