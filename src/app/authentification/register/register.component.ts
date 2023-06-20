@@ -37,7 +37,8 @@ export class RegisterComponent {
     style: '',
     photo: '',
     codePostal: '',
-    age: undefined
+    age: undefined,
+    instrument: '',
   };
 
   currentMusicienId: string | null = null;
@@ -70,7 +71,8 @@ export class RegisterComponent {
         photo: this.formMusicien.value.photo,
         codePostal: this.formMusicien.value.codePostal,
         age: this.formMusicien.value.age,
-        description: this.formMusicien.value.description
+        description: this.formMusicien.value.description,
+        instrument: this.formMusicien.value.instrument
       };
 
       // ajoute un nouvel utilisateur

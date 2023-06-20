@@ -20,7 +20,8 @@ export class BioPageComponent {
     description: '',
     photo: '',
     codePostal: '',
-    age: undefined
+    age: undefined,
+    instrument:'',
   };
   photoMusicien?: string;
   pseudoMusicien?: string;
