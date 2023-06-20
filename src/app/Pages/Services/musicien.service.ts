@@ -116,16 +116,17 @@ export class MusicienService {
   }
 
 
+
   getMusicienActuel(): Observable<Musicien> {
     const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
     return this.getMusicienById(musicienId);
   }
 
-
   // On ajoute l'ID du musicien liké à l'ensemble de likes
   likeMusicien(): Observable<Musicien> {
     const musicienId = this.selectedMusicienIds[this.selectedMusicienIds.length - 1];
     this.likedMusicians.add(musicienId);
+    this.doneMusiciens.push(musicienId);
     return this.getMusicienById(musicienId);
     // return this.checkMatch(musicienId);
   }
@@ -138,25 +139,5 @@ export class MusicienService {
       return this.likedMusicians.has(userId);
     }
     return false;
-  }
-
-  private checkMatch(musicienId: number) {
-    /*
-      Si l'ID de l'utilisateur auth
-      est dans la liste du musicien liké
-      On l'ajoute à la Map
-    */
-    if (this.likedMusicians.has(musicienId)) {
-      this.matches.add(musicienId);
-      this.likedMusicians.delete(musicienId);
-      this.removeLikedMusicienFromList(musicienId);
-      return EMPTY;
-    }
-    return EMPTY;
-  }
-
-  // exclut profil des résultats si liké
-  private removeLikedMusicienFromList(musicienId: number): void {
-    this.doneMusiciens.push(musicienId);
   }
 }

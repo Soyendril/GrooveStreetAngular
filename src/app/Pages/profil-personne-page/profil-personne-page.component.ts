@@ -36,9 +36,9 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.updateMusicien();
     this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
       this.musicien = musicien;
-      
+
     });
-    
+
   }
 
   updateMusicien() {
@@ -46,8 +46,6 @@ export class ProfilPersonnePageComponent implements OnInit {
       (data) => {
         this.musicien = data;
         console.log(this.musicien);
-        
-
 
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$
         this.musicienService.musiciensEpuises$.next(false);

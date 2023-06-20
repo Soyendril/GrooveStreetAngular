@@ -1,0 +1,47 @@
+.carte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 200px;
+}
+
+#contail-profil-personne2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  background-color:#262626;
+  color: white;
+  border-radius: 10px;
+  border: solid;
+  border-color: #0b8865;
+  box-shadow: 0 4px 24px rgba(12, 12, 12, 12);
+  padding: 20px;
+}
+
+#contail-profil-personne2 button{
+  margin-top: 30px;
+}
+
+h2{
+  font-size: 1.6em;
+  text-align: center;
+}
+
+button {
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #0FA47A;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #0b8865;
+}
