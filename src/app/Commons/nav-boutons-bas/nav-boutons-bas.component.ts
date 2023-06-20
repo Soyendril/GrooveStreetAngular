@@ -15,9 +15,6 @@ import { MatchComponent } from "src/app/Pages/match/match.component";
 })
 export class NavBoutonsBasComponent {
 
-  // @Output() musicienUpdated = new EventEmitter();
-
-
   musicien: Musicien = {
     id: null,
     nom: '',
@@ -43,10 +40,6 @@ export class NavBoutonsBasComponent {
   musicienActuel: Musicien | null = null;
   isAuthenticated: boolean = false;
 
-  bsModalRef!: BsModalRef;
-
-
-
   constructor(
     private _musicienService: MusicienService,
     private musicienCommunicationService: MusicienCommunicationService,
@@ -68,7 +61,6 @@ export class NavBoutonsBasComponent {
     );
   }
 
-
   likeMusicien() {
     this.musicienService.likeMusicien().subscribe(
       (data) => {
@@ -77,10 +69,8 @@ export class NavBoutonsBasComponent {
             this.musicienActuel = musicien;
             const isUserLiked = this.musicienService.isUserLiked();
             if (isUserLiked) {
-              console.log("C'est un match avec "+ this.musicienActuel.nom);
               this.router.navigate(['/itsagroove/:id']);
             } else {
-              console.log(this.musicienActuel.nom + " ne t'a pas liké");
               this.updateMusicien();
             }
           }

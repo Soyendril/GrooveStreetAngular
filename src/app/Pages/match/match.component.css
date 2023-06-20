@@ -1,3 +1,15 @@
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .carte {
   display: flex;
   align-items: center;
@@ -7,6 +19,7 @@
 }
 
 #contail-profil-personne2 {
+  animation: zoom 3s infinite;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +36,7 @@
 }
 
 #contail-profil-personne2 button{
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 h2{
@@ -31,13 +44,21 @@ h2{
   text-align: center;
 }
 
+h3{
+  font-size: 1em;
+  text-align: center;
+  margin-top: 10px;
+}
+
 button {
   width: 120px;
-  height: 40px;
+  min-height: 30px;
   border-radius: 20px;
   background-color: #0FA47A;
   color: #ffffff;
   font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
   border: none;
 }
 
