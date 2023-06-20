@@ -23,6 +23,8 @@ import { NavBoutonsBasComponent } from './Commons/nav-boutons-bas/nav-boutons-ba
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { DatePipe } from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MatchComponent } from './Pages/match/match.component';
 
 
 
@@ -44,7 +46,8 @@ import { DatePipe } from '@angular/common';
     BoutonsStyleComponent,
     LoginComponent,
     RegisterComponent,
-    
+    MatchComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     CookieModule.withOptions(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {
