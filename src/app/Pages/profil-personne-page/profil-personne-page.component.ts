@@ -22,6 +22,7 @@ export class ProfilPersonnePageComponent implements OnInit {
     photo: '',
     codePostal: '',
     age: undefined,
+    instrument:'',
   };
 
   constructor(private _musicienService: MusicienService,
@@ -36,7 +37,6 @@ export class ProfilPersonnePageComponent implements OnInit {
     this.musicienCommunicationService.getNextMusicien$.subscribe((musicien) => {
       this.musicien = musicien;
       
-    
     });
     
   }
@@ -46,6 +46,7 @@ export class ProfilPersonnePageComponent implements OnInit {
       (data) => {
         this.musicien = data;
         console.log(this.musicien);
+        
 
 
         // Réinitialiser les indicateurs musiciensEpuises$ et profilConsulted$

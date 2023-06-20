@@ -165,6 +165,7 @@ export class AuthService {
    */
     public autoLogin() {
       const musicienData: {
+        instrument: string;
         id: string | null;
         nom: string;
         password: string;
@@ -192,6 +193,7 @@ export class AuthService {
         photo: musicienData.photo,
         codePostal: musicienData.codePostal,
         age: musicienData.age ? parseInt(musicienData.age) : undefined,
+        instrument: musicienData.instrument,
       };
 
       this.musicien.next(loadedMusicien);
