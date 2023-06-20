@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { MusicienService } from 'src/app/Pages/Services/musicien.service';
 import Musicien from 'src/app/authentification/model/musicien.model';
 import { MusicienCommunicationService } from 'src/app/Pages/Services/musicien-communication.service';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { MatchComponent } from "src/app/Pages/match/match.component";
-
 
 
 @Component({
