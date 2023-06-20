@@ -8,5 +8,11 @@ export default interface Musicien{
   description: string;
   photo: string;
   codePostal?: string |any;
-  age?: number
+  age?: number;
+  instrument: Instrument|any;
+}
+
+export interface Instrument {
+  type: string;
+  // Autres propriétés de l'instrument, le cas échéant
 }

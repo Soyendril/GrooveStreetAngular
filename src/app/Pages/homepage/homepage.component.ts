@@ -23,7 +23,8 @@ export class HomepageComponent implements OnInit {
     description: '',
     photo: '',
     codePostal: '',
-    age: undefined
+    age: undefined,
+    instrument:'',
   };
 
   pseudoMusicien?: string;

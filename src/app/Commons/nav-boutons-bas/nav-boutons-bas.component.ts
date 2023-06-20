@@ -28,7 +28,8 @@ export class NavBoutonsBasComponent {
     style: '',
     photo: '',
     codePostal: undefined,
-    age: undefined
+    age: undefined,
+    instrument:'',
   };
 
   // Array des images dispos pour les boutons
